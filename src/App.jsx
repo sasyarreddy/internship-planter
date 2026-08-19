@@ -1694,35 +1694,26 @@ function buildInternProfiles(
 
 // Replace the blank URLs below with the internal links your interns use.
 const INTERN_LINKS = [
+ 
   {
-    title: 'Employee Portal',
-    description: 'Payroll, benefits, and employee resources',
-    url: '',
-  },
-  {
-    title: 'Intern Calendar',
+    title: 'Activites Calendar',
     description: 'Intern events, talks, and collaboration days',
-    url: '',
+    url: 'https://mge0.sharepoint.com/sites/uConnect/_layouts/15/Events.aspx?ListGuid=83d33a74-75e9-457b-8628-cab0d47d372f&AudienceTarget=false&TeamsCID=ec793030-5da8-4d77-94ee-b1f2fbd635a5',
   },
   {
     title: 'IT Help Desk',
     description: 'Get help with your device, accounts, or software',
-    url: '',
-  },
-  {
-    title: 'Company Directory',
-    description: 'Find teams and people across the company',
-    url: '',
+    url: 'https://mge0.sharepoint.com/sites/DesktopSupportTeam/ServiceDesk/SitePages/Home.aspx?TeamsCID=79a0736a-b1aa-4ff5-abe6-af6069f96465',
   },
   {
     title: 'Parking + Maps',
     description: 'Office maps, parking, and building information',
-    url: '',
+    url: 'https://mge0.sharepoint.com/sites/O-FacilitiesManagement/SitePages/Maps-%26-Locations.aspx?TeamsCID=ac170d6e-3106-4bf0-ae8d-0f2e8389e1f8',
   },
   {
     title: 'Learning Resources',
     description: 'Training, documentation, and intern resources',
-    url: '',
+    url: 'https://mge.csod.com/default.aspx?ReturnUrl=%2fglobalsso%2fgssooutboundsso.aspx%3fou_id%3d-12285%26SAMLRequest%3dfVJNb%252BMgFPwriDu2oXHsojhRdqtqI3W1aeLuYS8RxtglssH1gyj590vzoXb30AsCvTcz780wWxz7Dh3UCNqaAtMowUgZaWtt2gK%252FlI8kx4v5DETfsYEvvXs1G%252FXmFTgUgAb4pVJgPxpuBWjgRvQKuJN8u%252Fz5xFmU8GG0zkrbYbQEUKMLUt%252BtAd%252BrcavGg5bqZfNU4FfnBuBxbAQlbWcr0RFQ8D5YpF0TSbB1JG0fd7bVJj4LxwA2lnAkXuhanfZvp%252BG0P%252B4PGD2EEbUR7rzWjblv1QfNReKdoA2H9a6y3tThGgkYjgvrd7ouCGUsTzF6tKNU5%252FUL3ASUwmj1UODl5rmZ1s1dmpFpLSWZsElG8iapCKtSJrKMUlUF%252BArWImxyUB9oAK9WBpwwrsAsYVOS5ITel%252FSO05Sn91FGJ38wWl%252B9%252B6bNJZOvjK4uTcB%252FlOWarH9tS4x%252B37INDfiaJD%252Brj58j%252FJpY3HLDcxh2wfCdCF7ku%252F9sn8Wf6efX57%252F%252FZv4X%26RelayState%3dee862561-e4d7-4cfa-a248-18f77d78cdce',
   },
 ]
 
