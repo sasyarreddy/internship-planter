@@ -1692,6 +1692,21 @@ function buildInternProfiles(
   }))
 }
 
+const STAR_SKILLS = [
+  'Teamwork',
+  'Decision Making',
+  'Persuasion',
+  'Communication Skills',
+  'Time Management',
+  'Multitasking',
+  'Leadership',
+  'Problem Solving',
+  'Adaptability',
+  'Goal Setting/Achievement',
+  'Creativity',
+  'Conflict Management',
+]
+
 // Replace the blank URLs below with the internal links your interns use.
 const INTERN_LINKS = [
  
@@ -2896,9 +2911,14 @@ function FruitsPage({
       return
     }
 
-    const cleanedTitle =
-      draft.title.trim() ||
-      'STAR Story'
+  if (!draft.title) {
+  setSaveMessage(
+    'Choose a skill before saving.'
+  )
+  return
+}
+
+const cleanedTitle = draft.title
 
     const savedStory = {
       title:
@@ -2993,8 +3013,8 @@ function FruitsPage({
           </h2>
 
           <p>
-            Click an apple below to turn a meaningful moment from your time at MGE
-            into a STAR statement. These stories can help you remember your impact
+            Click an apple below to turn the experience you have gained from your time at MGE
+            into a STAR statement. These reflections can help you remember your impact
             and prepare examples for future behavioral interviews.
           </p>
 
@@ -3133,22 +3153,32 @@ function FruitsPage({
                 Build your STAR
               </span>
 
-              <input
-                className="star-story-title"
-                type="text"
-                value={draft.title}
-                aria-label="STAR story title"
-                onChange={(event) =>
-                  setDraft(
-                    (current) => ({
-                      ...current,
-                      title:
-                        event.target
-                          .value,
-                    })
-                  )
-                }
-              />
+            <select
+  className="star-story-title"
+  value={draft.title}
+  aria-label="STAR skill"
+  onChange={(event) =>
+    setDraft(
+      (current) => ({
+        ...current,
+        title: event.target.value,
+      })
+    )
+  }
+>
+  <option value="">
+    Choose a skill...
+  </option>
+
+  {STAR_SKILLS.map((skill) => (
+    <option
+      key={skill}
+      value={skill}
+    >
+      {skill}
+    </option>
+  ))}
+</select>
             </div>
 
             <button
