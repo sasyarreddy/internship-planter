@@ -16,6 +16,9 @@ import stage10 from './assets/stage10.png'
 import stage11 from './assets/stage11.png'
 import stage12 from './assets/stage12.png'
 
+import appleBasket from './assets/apple_basket.png'
+import apple from './assets/apple.png'
+
 
 import wateringCan from './assets/watering-can.png'
 import plantFood from './assets/plant-food.png'
@@ -3004,12 +3007,13 @@ function FruitsPage({
           </a>
         </div>
 
-        <div
-          className="fruits-intro-apple"
-          aria-hidden="true"
-        >
-          🍎
-        </div>
+      <div className="fruits-intro-apple">
+  <img
+    src={appleBasket}
+    alt="Basket of apples"
+    className="fruits-intro-apple-image"
+  />
+</div>
       </section>
 
       <section className="fruit-orchard-card">
@@ -3084,7 +3088,11 @@ function FruitsPage({
                       className="fruit-apple"
                       aria-hidden="true"
                     >
-                      🍎
+                      <img
+  src={apple}
+  alt=""
+  className="story-apple-image"
+/>
                     </span>
 
                     {complete && (

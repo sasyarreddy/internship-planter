@@ -3985,6 +3985,26 @@ border-radius: 10px;
   color: #315f43;
 }
 
+.fruits-intro-apple-image {
+  width: 265px;
+  margin-right: 145px;
+  height: auto;
+  object-fit: contain;
+
+  filter:
+    drop-shadow(
+      0 8px 6px
+      rgba(79, 59, 32, 0.18)
+    );
+}
+
+.story-apple-image {
+  width: 135px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 12px;
+}
 
 .fruits-intro-card p {
   max-width: 790px;
