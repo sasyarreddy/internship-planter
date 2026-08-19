@@ -457,6 +457,7 @@ function ProgressCard({
   health,
   waterCount,
   plantFoodCount,
+  usePlantFood,
 }) {
   return (
     <section className="progress-card">
@@ -4651,6 +4652,22 @@ function App() {
     }
   }
 
+ /* =========================================
+     use plant food
+  ========================================= */
+
+function usePlantFood() {
+  if (plantFoodCount <= 0) {
+    return
+  }
+
+  setPlantFoodCount(
+    (current) => current - 1
+  )
+
+  setHealth(100)
+}
+
 
   /* =========================================
      WATER PLANT
@@ -5008,6 +5025,10 @@ function App() {
             plantFoodCount={
               plantFoodCount
             }
+              usePlantFood={
+                usePlantFood
+            }
+
           />
 
           <TasksCard
@@ -5095,10 +5116,13 @@ function App() {
           </div>
 
           <div className="plant-buttons">
-            <button
-              type="button"
-              className="plant-action food-button"
-            >
+      
+              <button
+                 type="button"
+                  className="plant-action food-button"
+                   onClick={usePlantFood}
+                     disabled={plantFoodCount <= 0}
+              >
               Plant Food 
             </button>
 
