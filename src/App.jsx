@@ -2311,34 +2311,38 @@ function InternHubPage({
     }))
   }
 
-  function renderMediaRow(
-    title,
-    items,
-    fallback
-  ) {
-    return (
-      <div className="favorite-media-group">
-        <h4>{title}</h4>
-        <div className="profile-media-grid">
-          {items.length > 0
-            ? items.map((item) => (
-                <ProfileMediaCard
-                  item={item}
-                  fallback={fallback}
-                  key={item.id}
-                />
-              ))
-            : [0, 1, 2, 3].map((slot) => (
-                <ProfileMediaCard
-                  item={null}
-                  fallback={fallback}
-                  key={slot}
-                />
-              ))}
-        </div>
+function renderMediaRow(
+  title,
+  items,
+  fallback,
+  mediaType
+) {
+  return (
+    <div
+      className={`favorite-media-group ${mediaType}`}
+    >
+      <h4>{title}</h4>
+
+      <div className="profile-media-grid">
+        {items.length > 0
+          ? items.map((item) => (
+              <ProfileMediaCard
+                item={item}
+                fallback={fallback}
+                key={item.id}
+              />
+            ))
+          : [0, 1, 2, 3].map((slot) => (
+              <ProfileMediaCard
+                item={null}
+                fallback={fallback}
+                key={slot}
+              />
+            ))}
       </div>
-    )
-  }
+    </div>
+  )
+}
 
   return (
     <section className="intern-hub-page">
@@ -2348,11 +2352,7 @@ function InternHubPage({
             grow together 𖧧𖡼𖤣
           </span>
           <h1>Intern Hub</h1>
-          <p>
-            Meet the intern garden. Profiles are saved to MySQL so
-            everyone sees the same intern information across devices.
-            Your planter is always first.
-          </p>
+         
         </div>
       </div>
 
@@ -2590,82 +2590,96 @@ function InternHubPage({
             </div>
           </div>
         ) : (
-          <div className="profile-display">
-            <div className="profile-intro">
-              <div className="profile-flower-avatar">
-                {selectedProfile.flower}
-              </div>
+  <div className="profile-display">
+<div className="profile-left-column">
 
-              <div>
-                <h3>
-                  {selectedProfile.name ||
-                    selectedIntern?.username ||
-                    'Intern'}
-                </h3>
-                <p>
-                  {selectedProfile.bio ||
-                    (viewingOwnProfile
-                      ? 'Add a short bio so other interns can get to know you.'
-                      : 'This intern has not added a bio yet.')}
-                </p>
+  <div className="profile-intro">
+    <div className="profile-avatar-row">
+      <div className="profile-flower-avatar">
+        {selectedProfile.flower}
+      </div>
 
-                {selectedProfile.linkedin && (
-                  <a
-                    className="linkedin-link"
-                    href={normalizeJournalLink(
-                      selectedProfile.linkedin
-                    )}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    LinkedIn ↗
-                  </a>
-                )}
-              </div>
-            </div>
+      {selectedProfile.linkedin && (
+        <a
+          className="linkedin-link"
+          href={normalizeJournalLink(
+            selectedProfile.linkedin
+          )}
+          target="_blank"
+          rel="noreferrer"
+        >
+          LinkedIn ↗
+        </a>
+      )}
+    </div>
 
-            <div className="hobby-section">
-              <h4>Hobbies</h4>
+    <h3>
+      {selectedProfile.name ||
+        selectedIntern?.username ||
+        'Intern'}
+    </h3>
+  </div>
 
-              {selectedProfile.hobbies.length > 0 ? (
-                <div className="hobby-tags">
-                  {selectedProfile.hobbies.map(
-                    (hobby) => (
-                      <span key={hobby}>
-                        {hobby}
-                      </span>
-                    )
-                  )}
-                </div>
-              ) : (
-                <p className="profile-empty-copy">
-                  {viewingOwnProfile
-                    ? 'Add a few hobbies to your profile.'
-                    : 'No hobbies added yet.'}
-                </p>
-              )}
-            </div>
 
-            <div className="favorite-media-section">
-              {renderMediaRow(
-                'Favorite Movies',
-                selectedProfile.favoriteMovies,
-                '🎬'
-              )}
+  <div className="hobby-section">
+    <h4>Hobbies</h4>
 
-              {renderMediaRow(
-                'Favorite Books',
-                selectedProfile.favoriteBooks,
-                '📚'
-              )}
+    {selectedProfile.hobbies.length > 0 ? (
+      <div className="hobby-tags">
+        {selectedProfile.hobbies.map(
+          (hobby) => (
+            <span key={hobby}>
+              {hobby}
+            </span>
+          )
+        )}
+      </div>
+    ) : (
+      <p className="profile-empty-copy">
+        {viewingOwnProfile
+          ? 'Add a few hobbies to your profile.'
+          : 'No hobbies added yet.'}
+      </p>
+    )}
+  </div>
 
-              {renderMediaRow(
-                'Favorite Albums',
-                selectedProfile.favoriteAlbums,
-                '🎵'
-              )}
-            </div>
-          </div>
+
+  <div className="profile-bio-section">
+    <h4>Bio</h4>
+
+    <p>
+      {selectedProfile.bio ||
+        (viewingOwnProfile
+          ? 'Add a short bio so other interns can get to know you.'
+          : 'This intern has not added a bio yet.')}
+    </p>
+  </div>
+
+</div>
+
+  <div className="favorite-media-section">
+    {renderMediaRow(
+      'Favorite Movies',
+      selectedProfile.favoriteMovies,
+      '🎬',
+      'movies'
+    )}
+
+    {renderMediaRow(
+      'Favorite Books',
+      selectedProfile.favoriteBooks,
+      '📚',
+      'books'
+    )}
+
+    {renderMediaRow(
+      'Favorite Albums',
+      selectedProfile.favoriteAlbums,
+      '🎵',
+      'albums'
+    )}
+  </div>
+</div>
         )}
       </section>
 
