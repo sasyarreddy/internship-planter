@@ -3024,7 +3024,7 @@ const cleanedTitle = draft.title
             target="_blank"
             rel="noreferrer"
           >
-            Learn about the STAR method from MIT ↗
+            Learn about the STAR method ↗
           </a>
         </div>
 
