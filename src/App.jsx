@@ -2613,11 +2613,7 @@ function renderMediaRow(
       )}
     </div>
 
-    <h3>
-      {selectedProfile.name ||
-        selectedIntern?.username ||
-        'Intern'}
-    </h3>
+  
   </div>
 
 
