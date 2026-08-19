@@ -9,6 +9,13 @@ import stage3 from './assets/stage3.png'
 import stage4 from './assets/stage4.png'
 import stage5 from './assets/stage5.png'
 import stage6 from './assets/stage6.png'
+import stage7 from './assets/stage7.png'
+import stage8 from './assets/stage8.png'
+import stage9 from './assets/stage9.png'
+import stage10 from './assets/stage10.png'
+import stage11 from './assets/stage11.png'
+import stage12 from './assets/stage12.png'
+
 
 import wateringCan from './assets/watering-can.png'
 import plantFood from './assets/plant-food.png'
@@ -142,6 +149,12 @@ const plantStages = [
   stage4,
   stage5,
   stage6,
+  stage7,
+  stage8,
+  stage9,
+  stage10,
+  stage11,
+  stage12,
 ]
 
 const JOURNAL_PROMPTS = [
