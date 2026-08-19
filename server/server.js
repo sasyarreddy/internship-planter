@@ -471,7 +471,7 @@ app.put('/api/stars/:username', async (req, res) => {
 // START SERVER
 // ===============================
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 
 app.listen(PORT, () => {
   console.log(`Backend running on http://localhost:${PORT}`)
