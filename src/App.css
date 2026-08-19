@@ -1,0 +1,5373 @@
+/* =========================================
+   PAGE
+========================================= */
+
+.page {
+  width: 100vw;
+  height: 100vh;
+  min-height: 760px;
+
+  position: relative;
+  overflow: hidden;
+
+  background-image: url('./assets/background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  font-family: "Comic Sans MS", "Marker Felt", cursive;
+  color: #143f2b;
+  
+}
+
+
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.header {
+  position: absolute;
+
+  top: 18px;
+  left: 35px;
+  right: 40px;
+
+  height: 110px;
+
+  display: flex;
+  align-items: flex-start;
+
+  z-index: 30;
+}
+
+.nav {
+  margin-top:12px;
+  display: flex;
+  gap: 35px;
+
+  margin-left: 40px;
+}
+
+
+.nav-link {
+  border: none;
+  background: none;
+
+  padding: 5px 0;
+
+  font-family: chalkboard, "Comic Sans MS", cursive, sans-serif;
+  font-size: 17px;
+  font-weight: bold;
+
+  color: #174c35;
+
+  cursor: pointer;
+
+  border-bottom: 3px solid transparent;
+}
+
+
+.nav-link:hover {
+  border-bottom-color: #6d8e3f;
+}
+
+
+.nav-link.active {
+  border-bottom-color: #4c7d2f;
+}
+
+/* LOGO */
+
+.logo {
+  width: 150px;
+  height: auto;
+  left: 5px;
+  top: 5px;
+  object-fit: contain;
+}
+
+
+
+/* =========================================
+   SHARED CARD STYLE
+========================================= */
+
+.progress-card,
+.tasks-card,
+.journal-card {
+  background: rgba(255, 253, 247, 0.93);
+
+  border-radius: 24px;
+
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.35);
+
+  z-index: 10;
+}
+
+
+/* =========================================
+   PROGRESS / HEALTH CARD
+========================================= */
+
+.progress-card {
+  position: absolute;
+
+  top: 130px;
+  left: 50px;
+
+  width: 350px;
+  height: 350px;
+
+  padding: 30px 32px;
+}
+
+
+.progress-card h2 {
+  margin: 0 0 20px 0;
+
+  font-size: 20px;
+  letter-spacing: 1px;
+
+  color: #174c35;
+}
+
+
+/* WEEK PROGRESS */
+
+.week-progress {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+}
+
+
+.week-section {
+  display: flex;
+  align-items: center;
+
+  flex: 1;
+}
+
+
+.week-section:last-child {
+  flex: 0;
+}
+
+
+.week-circle {
+  width: 17px;
+  height: 20px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: "Comic Sans MS", "Marker Felt", cursive;
+  font-size: 10px;
+}
+
+
+.week-circle.complete {
+  background-color: #5da545;
+  border: 2px solid #5da545;
+
+  color: white;
+}
+
+
+.week-circle.current {
+  background-color: white;
+
+  border: 3px solid #245a3b;
+
+  color: #173e2c;
+
+  font-weight: bold;
+}
+
+
+.week-circle.future {
+  background: rgba(255, 255, 255, 0.7);
+
+  border: 2px solid #d3d3d3;
+
+  color: #999;
+}
+
+
+.week-line {
+  width: 100%;
+  height: 3px;
+
+  background-color: #d5d5d5;
+}
+
+
+.week-line.complete {
+  background-color: #5da545;
+}
+
+
+/* DIVIDER */
+
+.card-divider {
+  width: 100%;
+  height: 1px;
+
+  background-color: #d5d0c7;
+
+  margin: 27px 0 20px;
+}
+
+.week-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 20px;
+}
+
+
+.week-title-row h2 {
+  margin: 0;
+}
+
+
+/* =========================================
+   HEALTH BAR
+========================================= */
+
+.health-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 0 8px 9px;
+
+  font-size: 17px;
+}
+
+
+.health-bar {
+  width: 100%;
+  height: 20px;
+
+  background-color: #e2e3dc;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+}
+
+
+.health-fill {
+  width: 50%;
+  height: 100%;
+
+  background-color: #4c9b3f;
+
+  border-radius: 20px;
+
+  transition: width 0.4s ease;
+}
+
+/* =========================================
+   WATER + FOOD IMAGES
+========================================= */
+
+.reward-images {
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+
+  gap: 30px;
+}
+
+
+.reward-item {
+  width: 140px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+
+/* Give both images the same amount of space */
+.reward-item img {
+  width: 113px;
+  height: 113px;
+
+    margin-top: 6px;
+
+
+  object-fit: contain;
+  object-position: center;
+
+  display: block;
+}
+
+
+.watering-image {
+  width: 113px;
+  height: 113px;
+}
+
+
+.food-image {
+  width: 113px;
+  height: 113px;
+}
+
+
+.reward-count {
+  margin-top: 1px;
+
+  font-size: 15px;
+  font-weight: bold;
+
+  color: #286d49;
+
+  white-space: nowrap;
+}
+
+/* =========================================
+   TASKS CARD
+========================================= */
+
+.tasks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-bottom: 1px solid #d4d0c7;
+}
+
+
+.tasks-header h2 {
+  border-bottom: none;
+}
+
+
+.tasks-reset {
+  border: none;
+  background: none;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  color: #286d49;
+
+  cursor: pointer;
+}
+
+
+.tasks-reset:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.tasks-card {
+  position: absolute;
+
+  top: 95px;
+  right: 140px;
+
+  width: 325px;
+  height: 420px;
+
+  padding: 25px 14px 25px 30px;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   TASKS TITLE
+========================================= */
+
+.tasks-card h2 {
+  margin: 0;
+
+  padding-bottom: 14px;
+
+  border-bottom: 1px solid #d4d0c7;
+
+  font-size: 29px;
+
+  color: #174c35;
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================
+   SCROLLING TASK LIST
+========================================= */
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+
+  flex: 1;
+
+  overflow-y: auto;
+  overflow-x: scroll;
+
+  padding-right: 10px;
+
+  scrollbar-width: thin;
+  scrollbar-color: #7c8f7c rgba(220, 220, 210, 0.35);
+}
+
+
+/* =========================================
+   INDIVIDUAL TASK
+========================================= */
+
+.task-row {
+  min-height: 51px;
+
+  display: grid;
+
+  grid-template-columns:
+    25px
+    1fr
+    25px;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 5px 0;
+
+  border-bottom: 1px solid #ddd9d0;
+
+  color: #1e3433;
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================
+   CHECKBOX
+========================================= */
+
+.task-row input {
+  appearance: none;
+
+  width: 25px;
+  height: 25px;
+
+  margin: 0;
+
+  background-color: white;
+
+  border: 2px solid #435754;
+  border-radius: 5px;
+
+  cursor: pointer;
+}
+
+
+.task-row input:checked {
+  position: relative;
+
+  background-color: #3b8a4f;
+  border-color: #2f7040;
+}
+
+
+.task-row input:checked::after {
+  content: "✓";
+
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+
+  font-family: Arial, sans-serif;
+  font-size: 19px;
+  font-weight: bold;
+}
+
+
+/* =========================================
+   TASK TEXT
+========================================= */
+
+.task-name {
+  font-size: 16px;
+
+  line-height: 1.2;
+}
+
+
+.task-row.completed .task-name {
+  color: #666;
+
+  text-decoration: line-through;
+}
+
+
+
+/* =========================================
+   CHROME / SAFARI / EDGE SCROLLBAR
+========================================= */
+
+.task-list::-webkit-scrollbar {
+  width: 9px;
+}
+
+
+.task-list::-webkit-scrollbar-track {
+  background: rgba(
+    220,
+    220,
+    210,
+    0.35
+  );
+
+  border-radius: 10px;
+}
+
+
+.task-list::-webkit-scrollbar-thumb {
+  background-color: #7c8f7c;
+
+  border-radius: 10px;
+
+  border: 2px solid rgba(220, 220, 210, 0.35);
+
+  background-clip: padding-box;
+}
+
+
+.task-list::-webkit-scrollbar-thumb:hover {
+  background-color: #526c58;
+}
+
+/* =========================================
+   TO-DO NOTE
+========================================= */
+
+.todo-note {
+  position: absolute;
+
+  left: 185px;
+  bottom: 20px;
+
+  width: 250px;
+  height: 250px;
+
+  padding: 28px 24px 20px;
+
+  background: #efffc1;
+
+  box-shadow:
+    0 8px 18px
+    rgba(0, 0, 0, 0.16);
+
+  transform: rotate(-2deg);
+
+  z-index: 20;
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   TODO HEADER
+========================================= */
+
+.todo-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 10px;
+}
+
+
+.todo-header h2 {
+  margin: 0;
+
+  font-size: 28px;
+
+  color: #286d49;
+}
+
+
+/* =========================================
+   ADD TODO ROW
+========================================= */
+
+.todo-add-row {
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  margin-bottom: 8px;
+}
+
+
+.todo-add-row input {
+  width: 100%;
+  min-width: 0;
+
+  padding: 5px 6px;
+
+  border: none;
+  border-bottom: 1px solid #8d8d7c;
+
+  background: transparent;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  outline: none;
+}
+
+
+.todo-add-row input::placeholder {
+  color: #8a866f;
+}
+
+
+.todo-add-row button {
+  border: none;
+  background: none;
+
+  font-family: inherit;
+  font-size: 15px;
+
+  color: #286d49;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+}
+
+
+.todo-add-row button:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+
+/* =========================================
+   TODO LIST
+========================================= */
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+
+  max-height: 110px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  padding-right: 5px;
+}
+
+
+/* =========================================
+   TODO ITEM
+========================================= */
+
+.todo-item {
+  min-height: 35px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  border-bottom: 1px solid #bfc7a4;
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+}
+
+
+.todo-item input[type="checkbox"] {
+  accent-color: #26741c;
+}
+
+.todo-item input {
+  width: 17px;
+  height: 17px;
+
+  flex-shrink: 0;
+
+  cursor: pointer;
+}
+
+
+.todo-item span {
+  font-size: 14px;
+
+  color: #34433b;
+}
+
+
+/* =========================================
+   COMPLETED TODO
+========================================= */
+
+.todo-item.todo-completed span {
+  color: #777;
+
+  text-decoration: line-through;
+}
+
+
+/* =========================================
+   TODO SCROLLBAR
+========================================= */
+
+.todo-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+
+.todo-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+.todo-list::-webkit-scrollbar-thumb {
+  background: #8c9a81;
+
+  border-radius: 10px;
+}
+
+
+.todo-list::-webkit-scrollbar-thumb:hover {
+  background: #66755f;
+}
+
+
+/* Firefox */
+
+.todo-list {
+  scrollbar-width: thin;
+  scrollbar-color: #8c9a81 transparent;
+}
+
+/* =========================================
+   PUSH PIN
+========================================= */
+
+.push-pin {
+  position: absolute;
+
+  top: 10px;
+  left: 50%;
+
+  width: 18px;
+  height: 18px;
+
+  background: #167417;
+
+  border-radius: 50%;
+
+  transform: translateX(-50%);
+
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.25);
+
+  z-index: 5;
+}
+
+
+/* little pin stem */
+
+.push-pin::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: 14px;
+
+  width: 3px;
+  height: 12px;
+
+  background: #272622;
+
+  transform: translateX(-50%);
+
+  border-radius: 2px;
+}
+
+
+.paper-corner {
+  position: absolute;
+
+  right: 0;
+  bottom: 0;
+
+  width: 34px;
+  height: 34px;
+
+  background: linear-gradient(
+    135deg,
+    #c1dd92 0%,
+    #90ab5d 50%,
+    #b0c37a 50%,
+    #efffc1 100%
+  );
+
+  border-bottom-right-radius: 3px;
+}
+
+/* =========================================
+   PLANT / DIRT
+========================================= */
+
+.plant-area {
+  position: absolute;
+
+  left: 52%;
+  bottom: 60px;
+
+  transform: translateX(-50%);
+
+  width: 1500px;
+  height: auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  z-index: 5;
+}
+
+
+.plant {
+  width: 1300px;
+  max-width: 100%;
+  max-height: 100%;
+
+  object-fit: contain;
+}
+
+
+/* =========================================
+   PLANT BUTTONS
+========================================= */
+
+.plant-buttons {
+  position: absolute;
+
+  left: 52%;
+  bottom: 20px;
+
+  transform: translateX(-50%);
+
+  display: flex;
+  gap: 18px;
+
+  z-index: 20;
+}
+
+
+.plant-action {
+  width: 255px;
+  height: 64px;
+
+  border-radius: 35px;
+
+  font-family: inherit;
+  font-size: 24px;
+
+  cursor: pointer;
+
+  border: 3px solid rgba(27, 83, 52, 0.6);
+
+  box-shadow:
+    inset 0 3px 5px rgba(255, 255, 255, 0.35),
+    0 5px 8px rgba(0, 0, 0, 0.35);
+}
+
+
+/* PLANT FOOD BUTTON */
+
+.food-button {
+  color: white;
+
+  background: #43975e;
+     
+}
+
+
+/* WATER BUTTON */
+
+.water-button {
+ color: white;
+
+  background: #43975e;
+}
+
+
+
+/* BUTTON HOVERS */
+
+.food-button:hover {
+  filter: brightness(1.08);
+}
+
+
+.water-button:hover {
+  filter: brightness(1.08);
+}
+
+
+/* =========================================
+   JOURNAL CARD
+========================================= */
+
+.journal-card {
+  position: absolute;
+
+  right: 45px;
+  bottom: 40px;
+
+  width: 400px;
+  height: 215px;
+
+  padding: 15px 15px;
+
+  z-index: 15;
+
+    object-fit: contain;
+}
+
+
+
+
+.journal-card h3 {
+  margin: 8px 0 4px;
+
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 17px;
+
+  color: #162b28;
+}
+
+
+.journal-card p {
+
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 14px;
+  line-height: 1.45;
+
+  color: #162b28;
+}
+
+
+
+.journal-button {
+
+ position: absolute;
+
+ top: 75%;
+ left: 12.5%;
+ 
+  display: flex;
+
+  justify-content: center;
+
+  width: 75%;
+
+
+  padding: 4px;
+
+  border: none;
+  border-radius: 8px;
+
+  background-color: #28784b;
+
+  color: white;
+
+  font-family: inherit;
+  font-size: 15px;
+
+  cursor: pointer;
+}
+
+
+.journal-button:hover {
+  background-color: #20623d;
+}
+
+
+/* =========================================
+   MEDIUM SCREENS
+========================================= */
+
+@media (max-width: 1400px) {
+
+  .logo {
+    width: 250px;
+  }
+
+
+  .nav {
+    margin-left: 45px;
+    gap: 35px;
+  }
+
+
+  .progress-card {
+    width: 520px;
+
+    transform: scale(0.9);
+    transform-origin: top left;
+  }
+
+
+  .tasks-card {
+    right: 35px;
+
+    transform: scale(0.9);
+    transform-origin: top right;
+  }
+
+
+  .todo-note {
+    left: 130px;
+
+    transform: scale(0.88);
+    transform-origin: bottom left;
+  }
+
+
+  .journal-card {
+    right: 40px;
+
+    transform: scale(0.9);
+    transform-origin: bottom right;
+  }
+
+
+  .plant-area {
+    width: 520px;
+  }
+
+
+  .plant {
+    width: 520px;
+  }
+
+
+  .plant-action {
+    width: 220px;
+    height: 58px;
+
+    font-size: 21px;
+  }
+}
+
+
+/*calender*/
+
+/* =========================================
+   DEMO CALENDAR
+========================================= */
+
+.calendar-reset {
+  margin-top: 8px;
+
+  border: none;
+  background: none;
+
+  font-family: inherit;
+  font-size: 13px;
+
+  color: #286d49;
+
+  cursor: pointer;
+}
+
+
+.calendar-reset:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.calendar-control {
+  position: absolute;
+
+  left: 35px;
+  bottom: 25px;
+
+  width: 120px;
+
+  padding: 8px 10px;
+
+  background: rgba(255, 253, 247, 0.93);
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 5px 14px
+    rgba(0, 0, 0, 0.15);
+
+  color: #174c35;
+
+  z-index: 30;
+}
+
+
+.calendar-title {
+  margin-bottom: 8px;
+
+  font-size: 15px;
+  font-weight: bold;
+}
+
+
+.calendar-row {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.calendar-date {
+  font-size: 14px;
+}
+
+
+.calendar-arrow {
+  width: 30px;
+  height: 30px;
+
+  border: none;
+  border-radius: 50%;
+
+  background-color: #4c9b3f;
+  color: white;
+
+  font-family: inherit;
+  font-size: 18px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    background-color 0.15s ease;
+}
+
+
+.calendar-arrow:hover {
+  background-color: #387a32;
+
+  transform: scale(1.08);
+}
+
+
+.calendar-arrow:active {
+  transform: scale(0.92);
+}
+
+
+/* =========================================
+   JOURNAL PAGE
+========================================= */
+
+.journal-page {
+  position: absolute;
+
+  top: 120px;
+  left: 45px;
+  right: 45px;
+  bottom: 35px;
+
+  display: grid;
+
+  grid-template-columns:
+    290px
+    minmax(500px, 1fr)
+    310px;
+
+  gap: 25px;
+
+  align-items: start;
+
+  z-index: 15;
+}
+
+
+/* =========================================
+   JOURNAL LEFT SIDE
+========================================= */
+
+.journal-side-info {
+  padding: 60px 20px 20px 25px;
+
+  color: #173f35;
+}
+
+.journal-side-info {
+  padding: 25px;
+
+  background: rgba(219, 255, 212, 0.65);
+
+  border-radius: 20px;
+
+  color: #173f35;
+}
+
+
+.journal-side-title {
+  margin-bottom: 10px;
+
+  font-size: 30px;
+  font-weight: bold;
+
+  color: #174c35;
+}
+
+
+.journal-side-info h3 {
+  margin: 0 0 12px;
+
+  font-size: 20px;
+
+  color: #174c35;
+}
+
+
+.journal-side-info p {
+  max-width: 250px;
+
+  margin: 0;
+
+  font-size: 16px;
+  line-height: 1.45;
+
+  color: #213a37;
+}
+
+
+/* =========================================
+   JOURNAL EDITOR CARD
+========================================= */
+
+.journal-editor {
+  height: 560px;
+
+  padding: 30px;
+
+  background: rgba(
+    255,
+    253,
+    247,
+    0.96
+  );
+
+  border-radius: 25px;
+
+  box-shadow:
+    0 7px 18px
+    rgba(0, 0, 0, 0.15);
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+}
+
+
+.journal-editor h2 {
+  margin: 0 0 20px;
+
+  font-size: 29px;
+
+  color: #174c35;
+}
+
+
+/* =========================================
+   JOURNAL TOOLBAR
+========================================= */
+
+.journal-toolbar {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  min-height: 48px;
+
+  padding: 0 12px;
+
+  border: 1px solid #d8d6ce;
+  border-bottom: none;
+
+  border-radius: 10px 10px 0 0;
+
+  background: rgba(
+    255,
+    255,
+    255,
+    0.55
+  );
+}
+
+
+.journal-toolbar button {
+  width: 38px;
+  height: 36px;
+
+  border: none;
+  border-radius: 6px;
+
+  background: transparent;
+
+  font-family: Arial, sans-serif;
+  font-size: 19px;
+
+  color: #273431;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    transform 0.1s ease;
+}
+
+
+.journal-toolbar button:hover {
+  background-color:
+    rgba(40, 109, 73, 0.1);
+}
+
+
+.journal-toolbar button:active {
+  transform: translateY(1px);
+
+  background-color:
+    rgba(40, 109, 73, 0.18);
+}
+
+
+/* =========================================
+   JOURNAL TEXT AREA
+========================================= */
+
+.journal-textarea {
+  width: 100%;
+
+  flex: 1;
+
+  box-sizing: border-box;
+
+  padding: 20px;
+
+  border: 1px solid #d8d6ce;
+
+  border-radius: 0 0 10px 10px;
+
+  background:
+    rgba(255, 255, 255, 0.55);
+
+  resize: none;
+
+  outline: none;
+
+  font-family: inherit;
+  font-size: 17px;
+  line-height: 1.55;
+
+  color: #203632;
+}
+
+
+.journal-textarea::placeholder {
+  color: #a2a29d;
+}
+
+
+.journal-textarea:focus {
+  border-color: #4c9b3f;
+
+  box-shadow:
+    inset 0 0 0 1px #4c9b3f;
+}
+
+
+/* =========================================
+   JOURNAL BOTTOM ROW
+========================================= */
+
+.journal-editor-bottom {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 16px;
+}
+
+
+.journal-editor-bottom span {
+  font-size: 14px;
+
+  color: #454e4b;
+}
+
+
+/* =========================================
+   SAVE ENTRY BUTTON
+========================================= */
+
+.save-journal {
+  min-width: 175px;
+
+  padding: 12px 22px;
+
+  border: none;
+  border-radius: 11px;
+
+  background:
+    linear-gradient(
+      #35935c,
+      #237949
+    );
+
+  color: white;
+
+  font-family: inherit;
+  font-size: 18px;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 5px 0 #175837;
+
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease;
+}
+
+
+.save-journal:hover {
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 7px 0 #175837;
+}
+
+
+.save-journal:active {
+  transform:
+    translateY(4px);
+
+  box-shadow:
+    0 1px 0 #175837;
+}
+
+
+/* =========================================
+   PAST ENTRIES CARD
+========================================= */
+
+.past-entries {
+  height: 520px;
+
+  padding: 24px 20px;
+
+  background:
+    rgba(
+      255,
+      253,
+      247,
+      0.96
+    );
+
+  border-radius: 24px;
+
+  box-shadow:
+    0 7px 18px
+    rgba(0, 0, 0, 0.15);
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+
+.past-entries h2 {
+  margin:
+    0
+    0
+    18px;
+
+  padding-bottom: 14px;
+
+  border-bottom:
+    1px solid #ddd9d0;
+
+  font-size: 24px;
+
+  color: #174c35;
+}
+
+
+/* =========================================
+   INDIVIDUAL PAST ENTRY
+========================================= */
+
+.past-entry {
+  position: relative;
+
+  margin-bottom: 9px;
+
+  padding: 16px 38px 16px 14px;
+
+  border:
+    1px solid #dedbcf;
+
+  border-radius: 10px;
+
+  background:
+    rgba(
+      248,
+      247,
+      239,
+      0.9
+    );
+
+  font-size: 16px;
+  font-weight: bold;
+
+  color: #173f35;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    background-color 0.15s ease;
+}
+
+
+.past-entry::after {
+  content: "›";
+
+  position: absolute;
+
+  right: 15px;
+  top: 50%;
+
+  transform:
+    translateY(-50%);
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size: 24px;
+
+  color: #286d49;
+}
+
+
+.past-entry:hover {
+  background:
+    rgba(
+      232,
+      240,
+      220,
+      0.95
+    );
+
+  transform:
+    translateX(2px);
+}
+
+
+/* =========================================
+   PAST ENTRY SCROLLBAR
+========================================= */
+
+.past-entries::-webkit-scrollbar {
+  width: 7px;
+}
+
+
+.past-entries::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+.past-entries::-webkit-scrollbar-thumb {
+  background: #8b9b83;
+
+  border-radius: 10px;
+}
+
+
+.past-entries {
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    #8b9b83
+    transparent;
+}
+
+
+/* =========================================
+   JOURNAL RESPONSIVE
+========================================= */
+
+@media (max-width: 1200px) {
+
+  .journal-page {
+    grid-template-columns:
+      220px
+      1fr
+      260px;
+
+    gap: 18px;
+
+    left: 25px;
+    right: 25px;
+  }
+
+
+  .journal-side-title {
+    font-size: 28px;
+  }
+
+
+  .journal-editor {
+    padding: 24px;
+  }
+
+}
+
+
+@media (max-width: 900px) {
+
+  .journal-page {
+    position: relative;
+
+    top: 110px;
+    left: auto;
+    right: auto;
+    bottom: auto;
+
+    width: calc(100% - 40px);
+
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  .journal-side-info {
+    padding: 10px;
+  }
+
+
+  .journal-editor,
+  .past-entries {
+    width: 100%;
+
+    box-sizing: border-box;
+  }
+
+
+  .journal-editor {
+    height: 500px;
+  }
+
+}
+
+/* =========================================
+   JOURNAL ADDED FEATURES
+========================================= */
+
+/* =========================================
+   JOURNAL PAGE
+========================================= */
+
+.journal-page {
+  position: absolute;
+
+  top: 120px;
+  left: 45px;
+  right: 45px;
+  bottom: 35px;
+
+  display: grid;
+
+  grid-template-columns:
+    280px
+    minmax(500px, 1fr)
+    300px;
+
+  gap: 25px;
+
+  align-items: start;
+
+  z-index: 20;
+}
+
+
+/* =========================================
+   LEFT JOURNAL SIDEBAR
+========================================= */
+
+.journal-side-info {
+  padding: 24px;
+
+  background:
+    rgba(255, 253, 247, 0.82);
+
+  border-radius: 22px;
+
+  box-shadow:
+    0 6px 16px
+    rgba(0, 0, 0, 0.12);
+
+  color: #173f35;
+}
+
+
+/* JOURNAL TITLE */
+
+.journal-side-title {
+  margin-bottom: 1px;
+
+  font-size: 32px;
+  font-weight: bold;
+
+  color: #174c35;
+}
+
+
+.suggestion{
+  font-size: 12px;
+  color: gray;
+}
+
+/* =========================================
+   JOURNAL STAGE LIST
+========================================= */
+
+.journal-stage-list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+
+  margin-bottom: 22px;
+}
+
+
+.journal-stage {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 9px 11px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: transparent;
+
+  font-family: inherit;
+  font-size: 15px;
+
+  text-align: left;
+
+  color: #314b43;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+
+.journal-stage:hover {
+  background:
+    rgba(76, 155, 63, 0.11);
+
+  transform:
+    translateX(2px);
+}
+
+
+/* CURRENTLY SELECTED PROMPT */
+
+.journal-stage.active {
+  background:
+    rgba(76, 155, 63, 0.2);
+
+  color: #174c35;
+
+  font-weight: bold;
+}
+
+
+/* STAGE THAT HAS BEEN SAVED */
+
+.journal-stage.saved {
+  color: #286d49;
+}
+
+
+.journal-stage-check {
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  color: #4c9b3f;
+}
+
+
+/* =========================================
+   CURRENT JOURNAL PROMPT
+========================================= */
+
+.journal-prompt-copy {
+  padding-top: 16px;
+
+  border-top:
+    1px solid
+    rgba(70, 90, 80, 0.2);
+}
+
+
+.journal-prompt-copy h3 {
+  margin:
+    0
+    0
+    9px;
+
+  font-size: 22px;
+
+  color: #174c35;
+}
+
+
+.journal-prompt-copy p {
+  margin: 0;
+
+  font-size: 16px;
+  line-height: 1.45;
+
+  color: #3d504b;
+}
+
+
+/* =========================================
+   JOURNAL EDITOR
+========================================= */
+
+.journal-editor {
+  height: 575px;
+
+  padding: 28px;
+
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+
+  background:
+    rgba(255, 253, 247, 0.96);
+
+  border-radius: 24px;
+
+  box-shadow:
+    0 7px 18px
+    rgba(0, 0, 0, 0.15);
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   EDITOR HEADING
+========================================= */
+
+.journal-editor-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 16px;
+}
+
+
+.journal-editor-heading h2 {
+  margin: 0;
+
+  font-size: 28px;
+
+  color: #174c35;
+}
+
+
+.journal-editor-heading p {
+  margin:
+    4px
+    0
+    0;
+
+  font-size: 13px;
+
+  color: #777c77;
+}
+
+
+/* =========================================
+   FORMATTING TOOLBAR
+========================================= */
+
+.journal-toolbar {
+  min-height: 48px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  padding:
+    5px
+    10px;
+
+  box-sizing: border-box;
+
+  border:
+    1px solid #d5d5cd;
+
+  border-bottom: none;
+
+  border-radius:
+    10px
+    10px
+    0
+    0;
+
+  background:
+    rgba(248, 248, 243, 0.95);
+}
+
+
+/* BOLD / ITALIC / UNDERLINE / LINK */
+
+.journal-toolbar button {
+  width: 36px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 6px;
+
+  background: transparent;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size: 17px;
+
+  color: #283b36;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    transform 0.1s ease;
+}
+
+
+.journal-toolbar button:hover {
+  background:
+    rgba(76, 155, 63, 0.13);
+}
+
+
+.journal-toolbar button:active {
+  transform:
+    translateY(1px);
+
+  background:
+    rgba(76, 155, 63, 0.22);
+}
+
+
+/* =========================================
+   ATTACH BUTTON
+========================================= */
+
+.journal-attachment-button {
+  min-height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-left: 4px;
+
+  padding:
+    0
+    10px;
+
+  border-radius: 6px;
+
+  font-size: 14px;
+
+  color: #286d49;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease;
+}
+
+
+.journal-attachment-button:hover {
+  background:
+    rgba(76, 155, 63, 0.13);
+}
+
+
+/* hide normal file input */
+
+.journal-attachment-button input {
+  display: none;
+}
+
+
+/* =========================================
+   JOURNAL WRITING AREA
+========================================= */
+
+.journal-textarea {
+  width: 100%;
+
+  min-height: 260px;
+  flex: 1;
+
+  box-sizing: border-box;
+
+  padding: 20px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  border:
+    1px solid #d5d5cd;
+
+  border-radius:
+    0
+    0
+    10px
+    10px;
+
+  background:
+    rgba(255, 255, 255, 0.7);
+
+  outline: none;
+
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.55;
+
+  color: #253b35;
+}
+
+
+/* PLACEHOLDER FOR contentEditable */
+
+.journal-textarea:empty::before {
+  content:
+    attr(data-placeholder);
+
+  color: #aaa9a3;
+
+  pointer-events: none;
+}
+
+
+.journal-textarea:focus {
+  border-color: #4c9b3f;
+
+  box-shadow:
+    inset
+    0
+    0
+    0
+    1px
+    #4c9b3f;
+}
+
+
+/* LINKS INSIDE JOURNAL */
+
+.journal-textarea a {
+  color: #287c58;
+
+  text-decoration: underline;
+
+  text-underline-offset: 2px;
+}
+
+
+/* =========================================
+   JOURNAL TEXTAREA SCROLLBAR
+========================================= */
+
+.journal-textarea::-webkit-scrollbar {
+  width: 7px;
+}
+
+
+.journal-textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+.journal-textarea::-webkit-scrollbar-thumb {
+  background: #8b9b83;
+
+  border-radius: 10px;
+}
+
+
+/* =========================================
+   JOURNAL ATTACHMENTS
+========================================= */
+
+.journal-attachments {
+  display: flex;
+
+  gap: 8px;
+
+  margin-top: 10px;
+
+  padding-bottom: 3px;
+
+  overflow-x: auto;
+}
+
+
+/* ONE ATTACHMENT */
+
+.journal-attachment {
+  width: 125px;
+  min-width: 125px;
+
+  padding: 7px;
+
+  box-sizing: border-box;
+
+  background:
+    #f4f3ec;
+
+  border:
+    1px solid #ddd9d0;
+
+  border-radius: 9px;
+}
+
+
+/* IMAGE PREVIEW */
+
+.journal-attachment img {
+  width: 100%;
+  height: 70px;
+
+  object-fit: cover;
+
+  display: block;
+
+  margin-bottom: 6px;
+
+  border-radius: 6px;
+}
+
+
+/* NON-IMAGE FILE */
+
+.journal-file-icon {
+  height: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 6px;
+
+  border-radius: 6px;
+
+  background:
+    rgba(76, 155, 63, 0.08);
+
+  font-size: 32px;
+}
+
+
+/* =========================================
+   ATTACHMENT DETAILS
+========================================= */
+
+.journal-attachment-info {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+
+.journal-attachment-info a {
+  max-width: 100%;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+
+  font-size: 11px;
+
+  color: #286d49;
+
+  text-decoration: none;
+}
+
+
+.journal-attachment-info a:hover {
+  text-decoration: underline;
+}
+
+
+.journal-attachment-info button {
+  align-self: flex-start;
+
+  padding: 0;
+
+  border: none;
+  background: none;
+
+  font-family: inherit;
+  font-size: 11px;
+
+  color: #925451;
+
+  cursor: pointer;
+}
+
+
+.journal-attachment-info button:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================================
+   BOTTOM OF JOURNAL EDITOR
+========================================= */
+
+.journal-editor-bottom {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-top: 14px;
+}
+
+
+/* WORD COUNT + SAVE MESSAGE */
+
+.journal-save-status {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+
+  font-size: 13px;
+
+  color: #555f5a;
+}
+
+
+.journal-save-message {
+  color: #367844;
+
+  font-weight: bold;
+}
+
+
+/* =========================================
+   SAVE JOURNAL BUTTON
+========================================= */
+
+.save-journal {
+  min-width: 160px;
+
+  padding:
+    11px
+    20px;
+
+  border: none;
+
+  border-radius: 11px;
+
+  background:
+    linear-gradient(
+      #43975e,
+      #237648
+    );
+
+  color: white;
+
+  font-family: inherit;
+  font-size: 17px;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 5px 0 #175837;
+
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease;
+}
+
+
+.save-journal:hover {
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 7px 0 #175837;
+}
+
+
+.save-journal:active {
+  transform:
+    translateY(4px);
+
+  box-shadow:
+    0 1px 0 #175837;
+}
+/* =========================================
+   PAST JOURNAL ENTRIES
+========================================= */
+
+.past-entries {
+  height: 100%;
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 24px;
+
+  background: rgba(255, 253, 247, 0.94);
+
+  border-radius: 22px;
+
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.10);
+
+  color: #173e2c;
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   PAST ENTRIES TITLE
+========================================= */
+
+.past-entries h2 {
+  margin: 0 0 18px 0;
+
+  padding-bottom: 12px;
+
+  border-bottom: 1px solid #d8d3c9;
+
+  font-size: 23px;
+  font-weight: bold;
+
+  color: #174c35;
+}
+
+
+/* =========================================
+   EMPTY PAST ENTRIES MESSAGE
+========================================= */
+
+.no-past-entries {
+  margin: 10px 0;
+
+  font-size: 13px;
+  line-height: 1.5;
+
+  color: #748078;
+}
+
+
+
+/* =========================================
+   INDIVIDUAL ENTRY CARD
+========================================= */
+
+.past-entry-card {
+  width: 100%;
+border-radius: 10px;
+
+  display: flex;
+  align-items: stretch;
+
+  background: #ffffff;
+
+ 
+  overflow: hidden;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
+}
+
+
+.past-entry-card:hover {
+  transform: translateY(-1px);
+
+  border-color: #93af99;
+
+  box-shadow:
+    0 4px 10px rgba(30, 75, 52, 0.10);
+}
+
+
+/* =========================================
+   CURRENTLY SELECTED ENTRY
+========================================= */
+
+.past-entry-card.active {
+  border: 2px solid #45815a;
+border-radius: 10px;
+  background: #f4f8f1;
+}
+
+
+/* =========================================
+   MAIN ENTRY BUTTON
+========================================= */
+
+.past-entry-button {
+  flex: 1;
+
+  min-width: 0;
+border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 5px;
+
+  padding: 13px 12px;
+
+  border: none;
+
+  background: transparent;
+
+  color: #173e2c;
+
+  font-family: inherit;
+  text-align: left;
+
+  cursor: pointer;
+}
+
+
+/* ENTRY TITLE */
+
+.past-entry-button strong {
+  width: 100%;
+
+  overflow: hidden;
+
+  font-size: 14px;
+  font-weight: bold;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  color: #173e2c;
+}
+
+
+/* ENTRY WEEK */
+
+.past-entry-button span {
+  font-size: 11px;
+
+  color: #748078;
+}
+
+
+/* =========================================
+   DELETE ENTRY BUTTON
+========================================= */
+
+.delete-entry-button {
+  width: 62px;
+border-radius: 10px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0 8px;
+
+  border: none;
+  border-left: 1px solid #e0ddd6;
+
+  background: rgba(154, 67, 67, 0.05);
+
+  color: #9a4343;
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+
+.delete-entry-button:hover {
+  background: #a44c4c;
+
+  color: white;
+}
+
+
+.delete-entry-button:active {
+  background: #813838;
+}
+
+
+/* =========================================
+   SCROLLBAR
+========================================= */
+
+.past-entry-list::-webkit-scrollbar {
+  width: 7px;
+}
+
+
+.past-entry-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+.past-entry-list::-webkit-scrollbar-thumb {
+  background: #b8c7b9;
+
+  border-radius: 10px;
+}
+
+
+.past-entry-list::-webkit-scrollbar-thumb:hover {
+  background: #93aa96;
+}
+
+
+/* =========================================
+   SMALLER SCREENS
+========================================= */
+
+@media (max-width: 1100px) {
+
+  .past-entries {
+    width: auto;
+    height: auto;
+
+    min-height: 250px;
+
+    padding: 20px;
+  }
+
+
+  .past-entry-list {
+    max-height: 300px;
+  }
+
+
+  .past-entry-button {
+    padding: 12px 10px;
+  }
+
+
+  .delete-entry-button {
+    width: 58px;
+
+    font-size: 10px;
+  }
+}
+/* =========================================
+   SAVED BLOG POST
+========================================= */
+
+.past-entry {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+
+  position: relative;
+
+  margin-bottom: 9px;
+
+  padding:
+    13px
+    35px
+    13px
+    13px;
+
+  box-sizing: border-box;
+
+  border:
+    1px solid #dedbcf;
+
+  border-radius: 10px;
+
+  background:
+    rgba(248, 247, 239, 0.9);
+
+  font-family: inherit;
+
+  text-align: left;
+
+  color: #173f35;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    background-color 0.15s ease;
+}
+
+
+.past-entry::after {
+  content: "›";
+
+  position: absolute;
+
+  right: 13px;
+  top: 50%;
+
+  transform:
+    translateY(-50%);
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size: 24px;
+
+  color: #286d49;
+}
+
+
+.past-entry:hover {
+  background:
+    rgba(232, 240, 220, 0.95);
+
+  transform:
+    translateX(2px);
+}
+
+
+.past-entry strong {
+  font-size: 15px;
+
+  color: #174c35;
+}
+
+
+.past-entry span {
+  font-size: 12px;
+
+  color: #777c77;
+}
+
+
+/* =========================================
+   PAST ENTRIES SCROLLBAR
+========================================= */
+
+.past-entries::-webkit-scrollbar {
+  width: 7px;
+}
+
+
+.past-entries::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+.past-entries::-webkit-scrollbar-thumb {
+  background: #8b9b83;
+
+  border-radius: 10px;
+}
+
+
+.past-entries {
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    #8b9b83
+    transparent;
+}
+
+
+/* =========================================
+   JOURNAL RESPONSIVE
+========================================= */
+
+@media (max-width: 1250px) {
+
+  .journal-page {
+    left: 25px;
+    right: 25px;
+
+    grid-template-columns:
+      235px
+      minmax(430px, 1fr)
+      250px;
+
+    gap: 17px;
+  }
+
+
+  .journal-side-info {
+    padding: 18px;
+  }
+
+
+  .journal-side-title {
+    font-size: 27px;
+  }
+
+
+  .journal-editor {
+    padding: 22px;
+  }
+
+}
+
+
+/* =========================================
+   SMALL SCREEN JOURNAL
+========================================= */
+
+@media (max-width: 900px) {
+
+  .journal-page {
+    position: relative;
+
+    top: 110px;
+    left: auto;
+    right: auto;
+    bottom: auto;
+
+    width:
+      calc(100% - 40px);
+
+    margin:
+      0
+      auto
+      140px;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  .journal-side-info,
+  .journal-editor,
+  .past-entries {
+    width: 100%;
+
+    box-sizing: border-box;
+  }
+
+
+  .journal-editor {
+    height: 550px;
+  }
+
+
+  .past-entries {
+    height: auto;
+
+    max-height: 400px;
+  }
+
+}
+
+/* =========================================
+   SMALLER SCREENS
+========================================= */
+
+@media (max-width: 1100px) {
+
+  .logo {
+    width: 210px;
+  }
+
+
+  .nav {
+    margin-left: 25px;
+    gap: 25px;
+  }
+
+
+  .nav-link {
+    font-size: 17px;
+  }
+
+
+  .profile span {
+    font-size: 30px;
+  }
+
+
+  .progress-card {
+    transform: scale(0.75);
+    transform-origin: top left;
+  }
+
+
+  .tasks-card {
+    transform: scale(0.75);
+    transform-origin: top right;
+  }
+
+
+  .todo-note {
+    transform: scale(0.72);
+    transform-origin: bottom left;
+  }
+
+
+  .journal-card {
+    transform: scale(0.75);
+    transform-origin: bottom right;
+  }
+
+
+  .plant-area {
+    width: 400px;
+  }
+
+
+  .plant {
+    width: 400px;
+  }
+
+
+  .plant-action {
+    width: 185px;
+    height: 52px;
+
+    font-size: 18px;
+  }
+}
+/* =========================================
+   INTERN HUB PAGE
+========================================= */
+
+.intern-hub-page {
+  position: absolute;
+  top: 95px;
+  left: 45px;
+  right: 45px;
+  bottom: 25px;
+
+  z-index: 20;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  padding: 12px 16px 70px;
+
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: #7f9b80 transparent;
+}
+
+.intern-hub-page::-webkit-scrollbar {
+  width: 8px;
+}
+
+.intern-hub-page::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.intern-hub-page::-webkit-scrollbar-thumb {
+  background: #7f9b80;
+  border-radius: 20px;
+}
+
+.intern-hub-header {
+  max-width: 1180px;
+  margin: 0 auto 24px;
+  padding: 10px 8px;
+}
+
+.intern-hub-kicker,
+.intern-section-label {
+  display: block;
+  margin-bottom: 4px;
+
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+
+  color: #5c7d43;
+}
+
+.intern-hub-header h1 {
+  margin: 0;
+  font-size: 42px;
+  color: #174c35;
+}
+
+.intern-hub-header p {
+  max-width: 720px;
+  margin: 8px 0 0;
+
+  font-size: 16px;
+  line-height: 1.5;
+
+  color: #385346;
+}
+
+.intern-hub-grid {
+  width: 100%;
+  max-width: 1180px;
+
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 24px;
+
+  align-items: start;
+}
+
+.intern-profile-card,
+.intern-garden-card,
+.intern-links-section {
+  background: rgba(255, 253, 247, 0.95);
+  border-radius: 24px;
+
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.16);
+}
+
+.intern-profile-card {
+  padding: 28px;
+}
+
+.intern-garden-card {
+  padding: 26px;
+}
+
+.intern-section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+
+  margin-bottom: 22px;
+}
+
+.intern-section-heading.compact {
+  margin-bottom: 10px;
+}
+
+.intern-section-heading h2 {
+  margin: 0;
+  font-size: 28px;
+  color: #174c35;
+}
+
+.hub-primary-button,
+.hub-secondary-button {
+  min-height: 42px;
+  padding: 9px 18px;
+
+  border-radius: 11px;
+
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.hub-primary-button {
+  border: none;
+  background: #28784b;
+  color: white;
+}
+
+.hub-primary-button:hover {
+  background: #20623d;
+}
+
+.hub-secondary-button {
+  border: 1px solid #a5b5aa;
+  background: rgba(255, 255, 255, 0.65);
+  color: #315a43;
+}
+
+.hub-secondary-button:hover {
+  background: #eef5eb;
+}
+
+/* =========================================
+   PROFILE DISPLAY
+========================================= */
+
+.profile-intro {
+  display: grid;
+  grid-template-columns: 86px 1fr;
+  gap: 18px;
+  align-items: center;
+
+  padding-bottom: 22px;
+  border-bottom: 1px solid #dbded6;
+}
+
+.profile-flower-avatar {
+  width: 82px;
+  height: 82px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #ecf6d9;
+  border: 2px solid #87aa6b;
+
+  font-size: 47px;
+}
+
+.profile-intro h3 {
+  margin: 0 0 6px;
+  font-size: 28px;
+  color: #174c35;
+}
+
+.profile-intro p {
+  max-width: 620px;
+  margin: 0;
+
+  font-size: 15px;
+  line-height: 1.5;
+  color: #40574d;
+}
+
+.linkedin-link {
+  display: inline-block;
+  margin-top: 10px;
+
+  color: #246f48;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.linkedin-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.hobby-section,
+.favorite-media-section {
+  margin-top: 24px;
+}
+
+.hobby-section h4,
+.favorite-media-section h4,
+.single-media-row h4 {
+  margin: 0 0 10px;
+  font-size: 17px;
+  color: #264b38;
+}
+
+.hobby-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.hobby-tags span {
+  padding: 7px 12px;
+
+  background: #edf4dd;
+  border: 1px solid #bfd0a9;
+  border-radius: 999px;
+
+  color: #31573f;
+  font-size: 13px;
+}
+
+.profile-empty-copy {
+  margin: 0;
+  color: #78837d;
+  font-size: 14px;
+}
+
+.profile-media-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.profile-media-card {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.profile-media-card img,
+.profile-media-placeholder {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+
+  object-fit: cover;
+
+  border-radius: 10px;
+  background: #edf1e6;
+  border: 1px solid #d4dccb;
+}
+
+.profile-media-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 34px;
+}
+
+.profile-media-card strong {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  font-size: 13px;
+  color: #244b37;
+}
+
+.profile-media-card span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  font-size: 11px;
+  color: #758079;
+}
+
+.profile-media-card.empty {
+  opacity: 0.65;
+}
+
+.single-media-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 150px));
+  gap: 26px;
+
+  margin-top: 22px;
+}
+
+/* =========================================
+   PROFILE EDITOR
+========================================= */
+
+.profile-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.profile-field-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.profile-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.profile-field > span,
+.flower-picker > span {
+  font-size: 14px;
+  font-weight: bold;
+  color: #31563f;
+}
+
+.profile-field input,
+.profile-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 11px 12px;
+
+  border: 1px solid #c9d3c5;
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.72);
+
+  font-family: inherit;
+  font-size: 14px;
+  color: #243c31;
+
+  outline: none;
+}
+
+.profile-field input:focus,
+.profile-field textarea:focus {
+  border-color: #4c9b3f;
+  box-shadow: 0 0 0 2px rgba(76, 155, 63, 0.12);
+}
+
+.profile-field textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.profile-field small {
+  align-self: flex-end;
+  color: #7a847d;
+  font-size: 11px;
+}
+
+.flower-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.flower-options button {
+  width: 52px;
+  height: 52px;
+
+  border: 2px solid transparent;
+  border-radius: 50%;
+
+  background: #f2f6e8;
+
+  font-size: 29px;
+  cursor: pointer;
+}
+
+.flower-options button:hover {
+  transform: translateY(-1px);
+  border-color: #a9c391;
+}
+
+.flower-options button.selected {
+  border-color: #39784d;
+  background: #e4f1d6;
+}
+
+.profile-media-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+
+  padding-top: 4px;
+}
+
+.media-picker {
+  padding: 18px;
+
+  border: 1px solid #d6ddd1;
+  border-radius: 14px;
+
+  background: rgba(246, 249, 240, 0.72);
+}
+
+.media-picker-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 12px;
+}
+
+.media-picker-heading h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #2d523c;
+}
+
+.media-picker-heading span {
+  font-size: 12px;
+  color: #7b857e;
+}
+
+.selected-media-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 110px));
+  gap: 12px;
+
+  margin-bottom: 14px;
+}
+
+.selected-media-card {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.media-cover-wrap {
+  position: relative;
+}
+
+.media-cover-wrap img,
+.media-cover-placeholder {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+
+  object-fit: cover;
+  border-radius: 9px;
+  background: #e8eee0;
+}
+
+.media-cover-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+}
+
+.remove-media-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+
+  width: 25px;
+  height: 25px;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(33, 52, 43, 0.82);
+  color: white;
+
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.selected-media-card strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  color: #284d39;
+}
+
+.selected-media-card > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 10px;
+  color: #77827b;
+}
+
+.media-search-row {
+  display: flex;
+  gap: 8px;
+}
+
+.media-search-row input {
+  flex: 1;
+  min-width: 0;
+
+  padding: 10px 11px;
+
+  border: 1px solid #cbd5c6;
+  border-radius: 9px;
+
+  background: white;
+
+  font-family: inherit;
+  outline: none;
+}
+
+.media-search-row input:focus {
+  border-color: #4c9b3f;
+}
+
+.media-search-row button {
+  padding: 8px 13px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: #4b865d;
+  color: white;
+
+  font-family: inherit;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.media-search-row button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.media-search-error {
+  margin: 8px 0 0;
+  color: #9b4242;
+  font-size: 12px;
+}
+
+.media-search-results {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+
+  margin-top: 10px;
+}
+
+.media-search-result {
+  min-width: 0;
+
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 9px;
+  align-items: center;
+
+  padding: 7px;
+
+  border: 1px solid #d5ddd1;
+  border-radius: 9px;
+
+  background: rgba(255, 255, 255, 0.8);
+
+  text-align: left;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.media-search-result:hover {
+  border-color: #71a277;
+  background: #f3f8ed;
+}
+
+.media-search-result img,
+.media-search-placeholder {
+  width: 44px;
+  height: 58px;
+
+  object-fit: cover;
+  border-radius: 5px;
+  background: #e8eee1;
+}
+
+.media-search-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+
+.media-search-result > span {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.media-search-result strong,
+.media-search-result small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.media-search-result strong {
+  font-size: 12px;
+  color: #284c39;
+}
+
+.media-search-result small {
+  font-size: 10px;
+  color: #7b847f;
+}
+
+.profile-editor-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+
+  padding-top: 4px;
+}
+
+/* =========================================
+   INTERN GARDEN / PLANTER
+========================================= */
+
+.garden-intro,
+.garden-note {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #617168;
+}
+
+.intern-planter-scene {
+  position: relative;
+
+  width: 230px;
+  height: 280px;
+
+  margin: 18px auto;
+}
+
+.garden-flower {
+  position: absolute;
+  left: 50%;
+  top: 8px;
+
+  transform: translateX(-50%);
+
+  z-index: 5;
+  font-size: 76px;
+  line-height: 1;
+}
+
+.garden-stem {
+  position: absolute;
+  left: calc(50% - 4px);
+  top: 72px;
+
+  width: 8px;
+  height: 108px;
+
+  background: #4c8a4a;
+  border-radius: 6px;
+}
+
+.garden-leaf {
+  position: absolute;
+  top: 118px;
+
+  width: 48px;
+  height: 25px;
+
+  background: #6da25b;
+  border-radius: 100% 0 100% 0;
+}
+
+.garden-leaf.left {
+  left: 66px;
+  transform: rotate(25deg);
+}
+
+.garden-leaf.right {
+  right: 65px;
+  transform: scaleX(-1) rotate(25deg);
+}
+
+.garden-pot {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+
+  width: 174px;
+  height: 112px;
+
+  transform: translateX(-50%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #bd8150;
+  border: 3px solid #80532f;
+  border-radius: 11px 11px 38px 38px;
+
+  box-shadow: inset 0 -12px 0 rgba(116, 67, 34, 0.12);
+
+  z-index: 4;
+}
+
+.garden-pot::before {
+  content: '';
+
+  position: absolute;
+  top: -15px;
+  left: -12px;
+
+  width: 192px;
+  height: 24px;
+
+  background: #cc8c58;
+  border: 3px solid #80532f;
+  border-radius: 8px;
+}
+
+.garden-pot span {
+  position: relative;
+  z-index: 5;
+
+  max-width: 135px;
+  padding: 7px 11px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  background: #f6f0d7;
+  border: 1px solid #99754d;
+  border-radius: 5px;
+
+  color: #4b3d2b;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.garden-soil {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 16px;
+
+  height: 20px;
+
+  background: #76613f;
+  border-radius: 50%;
+
+  opacity: 0.55;
+}
+
+.garden-note {
+  padding: 12px;
+
+  background: rgba(226, 241, 206, 0.62);
+  border-radius: 10px;
+}
+
+/* =========================================
+   HELPFUL LINKS
+========================================= */
+
+.intern-links-section {
+  width: 100%;
+  max-width: 1180px;
+
+  box-sizing: border-box;
+
+  margin: 24px auto 0;
+  padding: 26px 28px 30px;
+}
+
+.intern-links-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.intern-link-card {
+  min-height: 96px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  padding: 15px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #d7dfd1;
+  border-radius: 13px;
+
+  background: #f7f8ee;
+
+  color: #2a4b39;
+  text-decoration: none;
+}
+
+.intern-link-card:not(.placeholder):hover {
+  transform: translateY(-1px);
+  border-color: #76a178;
+  box-shadow: 0 5px 11px rgba(41, 78, 54, 0.09);
+}
+
+.intern-link-card strong {
+  font-size: 15px;
+}
+
+.intern-link-card span {
+  flex: 1;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #66756d;
+}
+
+.intern-link-card small {
+  font-size: 10px;
+  font-weight: bold;
+  color: #44805a;
+}
+
+.intern-link-card.placeholder {
+  opacity: 0.72;
+}
+
+/* =========================================
+   INTERN HUB RESPONSIVE
+========================================= */
+
+@media (max-width: 1050px) {
+  .intern-hub-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .intern-garden-card {
+    max-width: none;
+  }
+
+  .intern-links-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .intern-hub-page {
+    top: 105px;
+    left: 18px;
+    right: 18px;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  .intern-hub-header h1 {
+    font-size: 34px;
+  }
+
+  .intern-profile-card,
+  .intern-garden-card,
+  .intern-links-section {
+    padding: 20px;
+  }
+
+  .intern-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .profile-field-grid,
+  .media-search-results {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-media-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .selected-media-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .intern-links-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-intro {
+    grid-template-columns: 64px 1fr;
+  }
+
+  .profile-flower-avatar {
+    width: 60px;
+    height: 60px;
+    font-size: 36px;
+  }
+}
+
+/* =========================================
+   FRUITS OF YOUR LABOR PAGE
+========================================= */
+
+.fruits-page {
+  position: absolute;
+
+  top: 95px;
+  left: 45px;
+  right: 45px;
+  bottom: 25px;
+
+  z-index: 20;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  padding: 12px 16px 80px;
+
+  box-sizing: border-box;
+
+  scrollbar-width: thin;
+  scrollbar-color: #7f9b80 transparent;
+}
+
+
+.fruits-page::-webkit-scrollbar {
+  width: 8px;
+}
+
+
+.fruits-page::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+.fruits-page::-webkit-scrollbar-thumb {
+  background: #7f9b80;
+
+  border-radius: 20px;
+}
+
+
+/* =========================================
+   FRUITS INTRO
+========================================= */
+
+.fruits-intro-card {
+  width: 100%;
+  max-width: 1180px;
+
+  margin: 0 auto 22px;
+  padding: 30px 34px;
+
+  box-sizing: border-box;
+
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    150px;
+  align-items: center;
+
+  gap: 28px;
+
+  background:
+    rgba(
+      255,
+      253,
+      247,
+      0.96
+    );
+
+  border: 1px solid
+    rgba(92, 125, 67, 0.22);
+
+  border-radius: 26px;
+
+  box-shadow:
+    0 8px 22px
+    rgba(0, 0, 0, 0.16);
+}
+
+
+.fruits-kicker,
+.fruit-section-label {
+  display: block;
+
+  margin-bottom: 5px;
+
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 0.6px;
+
+  text-transform: uppercase;
+
+  color: #668343;
+}
+
+
+.fruits-intro-card h1 {
+  margin: 0;
+
+  font-size: 42px;
+
+  color: #174c35;
+}
+
+
+.fruits-intro-card h2 {
+  margin: 8px 0 8px;
+
+  font-size: 19px;
+
+  color: #315f43;
+}
+
+
+.fruits-intro-card p {
+  max-width: 790px;
+
+  margin: 0;
+
+  font-size: 15px;
+  line-height: 1.55;
+
+  color: #40574d;
+}
+
+
+.star-method-link {
+  display: inline-block;
+
+  margin-top: 14px;
+
+  color: #28784b;
+
+  font-size: 14px;
+  font-weight: bold;
+
+  text-decoration: none;
+}
+
+
+.star-method-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+
+.fruits-intro-apple {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  font-size: 104px;
+
+  filter:
+    drop-shadow(
+      0 8px 6px
+      rgba(79, 59, 32, 0.18)
+    );
+}
+
+
+/* =========================================
+   APPLE ARRAY
+========================================= */
+
+.fruit-orchard-card {
+  width: 100%;
+  max-width: 1180px;
+
+  margin: 0 auto 22px;
+  padding: 24px 28px 28px;
+
+  box-sizing: border-box;
+
+  background:
+    rgba(
+      239,
+      248,
+      224,
+      0.93
+    );
+
+  border: 1px solid
+    rgba(83, 127, 71, 0.25);
+
+  border-radius: 24px;
+
+  box-shadow:
+    0 7px 18px
+    rgba(0, 0, 0, 0.13);
+}
+
+
+.fruit-orchard-toolbar {
+  display: grid;
+
+  grid-template-columns:
+    170px
+    1fr
+    170px;
+
+  align-items: center;
+
+  gap: 18px;
+
+  margin-bottom: 10px;
+}
+
+
+.fruit-orchard-toolbar > div {
+  text-align: center;
+}
+
+
+.fruit-orchard-toolbar h2 {
+  margin: 0;
+
+  font-size: 27px;
+
+  color: #174c35;
+}
+
+
+.add-fruit-button {
+  justify-self: start;
+
+  min-height: 42px;
+
+  padding: 9px 17px;
+
+  border: none;
+  border-radius: 11px;
+
+  background: #28784b;
+
+  color: white;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 4px 9px
+    rgba(38, 91, 58, 0.16);
+}
+
+
+.add-fruit-button:hover {
+  background: #20623d;
+}
+
+
+.fruit-count {
+  justify-self: end;
+
+  padding: 7px 12px;
+
+  border-radius: 999px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.65
+    );
+
+  border: 1px solid #c9d9bd;
+
+  color: #52705c;
+
+  font-size: 13px;
+  font-weight: bold;
+}
+
+
+.fruit-array {
+  min-height: 165px;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: flex-start;
+
+  flex-wrap: wrap;
+
+  gap: 20px;
+
+  padding: 18px 10px 4px;
+}
+
+
+.fruit-apple-button {
+  width: 150px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  padding: 10px 10px 12px;
+
+  border: 2px solid transparent;
+  border-radius: 18px;
+
+  background: transparent;
+
+  font-family: inherit;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.16s ease,
+    background-color 0.16s ease,
+    border-color 0.16s ease;
+}
+
+
+.fruit-apple-button:hover {
+  transform: translateY(-4px);
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.55
+    );
+}
+
+
+.fruit-apple-button.selected {
+  border-color: #5a8d57;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.72
+    );
+}
+
+
+.fruit-apple-button.complete {
+  background:
+    rgba(
+      255,
+      250,
+      218,
+      0.72
+    );
+}
+
+
+.fruit-apple-wrap {
+  position: relative;
+
+  width: 108px;
+  height: 104px;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}
+
+
+.fruit-apple {
+  display: block;
+
+  font-size: 82px;
+  line-height: 1;
+
+  filter:
+    drop-shadow(
+      0 5px 4px
+      rgba(76, 56, 35, 0.18)
+    );
+}
+
+
+.fruit-gold-star {
+  position: absolute;
+
+  top: -3px;
+  right: -1px;
+
+  width: 35px;
+  height: 35px;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  color: #e1aa18;
+
+  font-family: Arial, sans-serif;
+  font-size: 31px;
+
+  text-shadow:
+    0 2px 0 #fff4ad,
+    0 3px 5px
+      rgba(98, 68, 17, 0.3);
+
+  transform: rotate(10deg);
+}
+
+
+.fruit-apple-button strong {
+  max-width: 130px;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  font-size: 14px;
+
+  color: #234f38;
+}
+
+
+.fruit-apple-button small {
+  margin-top: 3px;
+
+  font-size: 11px;
+
+  color: #718077;
+}
+
+
+.fruit-apple-button.complete small {
+  color: #9a7314;
+
+  font-weight: bold;
+}
+
+
+/* =========================================
+   STAR EDITOR
+========================================= */
+
+.star-editor-card {
+  width: 100%;
+  max-width: 1180px;
+
+  margin: 0 auto;
+
+  padding: 26px 28px;
+
+  box-sizing: border-box;
+
+  background:
+    rgba(
+      255,
+      253,
+      247,
+      0.97
+    );
+
+  border-radius: 25px;
+
+  box-shadow:
+    0 9px 24px
+    rgba(0, 0, 0, 0.16);
+}
+
+
+.star-editor-header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: flex-start;
+
+  gap: 20px;
+
+  padding-bottom: 18px;
+
+  border-bottom: 1px solid #dedfd8;
+}
+
+
+.star-editor-header > div {
+  width: min(560px, 90%);
+}
+
+
+.star-story-title {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 0 0 6px;
+
+  border: none;
+  border-bottom:
+    2px solid
+    rgba(40, 120, 75, 0.25);
+
+  background: transparent;
+
+  outline: none;
+
+  font-family: inherit;
+  font-size: 25px;
+  font-weight: bold;
+
+  color: #174c35;
+}
+
+
+.star-story-title:focus {
+  border-bottom-color: #4d9160;
+}
+
+
+.star-editor-close {
+  width: 38px;
+  height: 38px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #eef2e8;
+
+  color: #4d6758;
+
+  font-family: Arial, sans-serif;
+  font-size: 27px;
+
+  cursor: pointer;
+}
+
+
+.star-editor-close:hover {
+  background: #dfe9d8;
+}
+
+
+.star-editor-layout {
+  display: grid;
+
+  grid-template-columns:
+    145px
+    minmax(0, 1fr);
+
+  gap: 26px;
+
+  padding-top: 22px;
+}
+
+
+/* STAR acronym rail */
+
+.star-acronym {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 9px;
+}
+
+
+.star-letter-button {
+  min-height: 62px;
+
+  display: grid;
+
+  grid-template-columns:
+    42px
+    1fr;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 8px 11px;
+
+  border:
+    1px solid #d2dbcc;
+
+  border-radius: 12px;
+
+  background: #f7f8ef;
+
+  font-family: inherit;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+
+.star-letter-button strong {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+
+  background: #dfeccf;
+
+  color: #2f6544;
+
+  font-family: Arial, sans-serif;
+  font-size: 21px;
+}
+
+
+.star-letter-button span {
+  font-size: 13px;
+  font-weight: bold;
+
+  color: #52665a;
+}
+
+
+.star-letter-button:hover {
+  border-color: #8cab7c;
+}
+
+
+.star-letter-button.active {
+  border-color: #3f8257;
+
+  background: #eaf3df;
+
+  box-shadow:
+    inset 4px 0 0 #3f8257;
+}
+
+
+.star-letter-button.filled strong {
+  background: #3f8257;
+
+  color: white;
+}
+
+
+.star-letter-button.filled span::after {
+  content: " ✓";
+
+  color: #3f8257;
+}
+
+
+/* Writing panel */
+
+.star-writing-panel {
+  min-width: 0;
+}
+
+
+.star-step-heading {
+  display: grid;
+
+  grid-template-columns:
+    64px
+    1fr;
+
+  gap: 15px;
+
+  align-items: start;
+
+  margin-bottom: 14px;
+}
+
+
+.star-big-letter {
+  width: 58px;
+  height: 58px;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+
+  background: #367a4d;
+
+  color: white;
+
+  font-family: Arial, sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+
+  box-shadow:
+    0 4px 9px
+    rgba(54, 122, 77, 0.18);
+}
+
+
+.star-step-heading span {
+  display: block;
+
+  margin-bottom: 1px;
+
+  color: #7b887f;
+
+  font-size: 12px;
+  font-weight: bold;
+
+  text-transform: uppercase;
+}
+
+
+.star-step-heading h3 {
+  margin: 0 0 4px;
+
+  font-size: 23px;
+
+  color: #174c35;
+}
+
+
+.star-step-heading p {
+  max-width: 760px;
+
+  margin: 0;
+
+  font-size: 14px;
+  line-height: 1.45;
+
+  color: #516158;
+}
+
+
+.star-response {
+  width: 100%;
+  min-height: 180px;
+
+  box-sizing: border-box;
+
+  padding: 17px;
+
+  border: 1px solid #ccd5c8;
+  border-radius: 13px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.72
+    );
+
+  outline: none;
+
+  resize: vertical;
+
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.5;
+
+  color: #263f34;
+}
+
+
+.star-response:focus {
+  border-color: #4d9160;
+
+  box-shadow:
+    inset 0 0 0 1px #4d9160;
+}
+
+
+.star-step-navigation {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    auto
+    1fr;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-top: 12px;
+}
+
+
+.star-step-navigation > span {
+  color: #7c8881;
+
+  font-size: 12px;
+  font-weight: bold;
+
+  text-align: center;
+}
+
+
+.star-nav-button {
+  width: max-content;
+
+  min-height: 38px;
+
+  padding: 7px 14px;
+
+  border: 1px solid #a9b8aa;
+  border-radius: 9px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.7
+    );
+
+  color: #315e43;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+
+.star-nav-button:last-child {
+  justify-self: end;
+}
+
+
+.star-nav-button:hover:not(:disabled) {
+  background: #eaf3df;
+}
+
+
+.star-nav-button:disabled {
+  opacity: 0.4;
+
+  cursor: not-allowed;
+}
+
+
+.star-editor-footer {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 18px;
+
+  margin-top: 22px;
+  padding-top: 18px;
+
+  border-top: 1px solid #dedfd8;
+}
+
+
+.star-save-message {
+  color: #6b786f;
+
+  font-size: 13px;
+}
+
+
+.save-star-button {
+  min-width: 145px;
+
+  padding: 11px 20px;
+
+  border: none;
+  border-radius: 11px;
+
+  background:
+    linear-gradient(
+      #35935c,
+      #237949
+    );
+
+  color: white;
+
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 4px 9px
+    rgba(37, 96, 60, 0.18);
+}
+
+
+.save-star-button:hover {
+  filter: brightness(1.06);
+}
+
+
+/* =========================================
+   FRUITS PAGE RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+  .fruits-intro-card {
+    grid-template-columns: 1fr;
+  }
+
+  .fruits-intro-apple {
+    display: none;
+  }
+
+  .fruit-orchard-toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .fruit-orchard-toolbar > div {
+    grid-row: 1;
+    text-align: left;
+  }
+
+  .add-fruit-button {
+    grid-row: 2;
+  }
+
+  .fruit-count {
+    display: none;
+  }
+
+  .star-editor-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .star-acronym {
+    flex-direction: row;
+  }
+
+  .star-letter-button {
+    flex: 1;
+
+    grid-template-columns: 1fr;
+
+    justify-items: center;
+
+    min-height: 76px;
+
+    text-align: center;
+  }
+
+  .star-letter-button span {
+    font-size: 11px;
+  }
+}
+
+
+@media (max-width: 650px) {
+  .fruits-page {
+    top: 105px;
+    left: 16px;
+    right: 16px;
+
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+
+  .fruits-intro-card,
+  .fruit-orchard-card,
+  .star-editor-card {
+    padding: 20px;
+  }
+
+  .fruits-intro-card h1 {
+    font-size: 33px;
+  }
+
+  .fruit-array {
+    gap: 8px;
+  }
+
+  .fruit-apple-button {
+    width: 130px;
+  }
+
+  .fruit-apple {
+    font-size: 72px;
+  }
+
+  .star-step-heading {
+    grid-template-columns: 1fr;
+  }
+
+  .star-big-letter {
+    width: 48px;
+    height: 48px;
+
+    font-size: 25px;
+  }
+
+  .star-letter-button span {
+    display: none;
+  }
+
+  .star-editor-footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .save-star-button {
+    width: 100%;
+  }
+}
+
+
+
+/* =========================================
+   LOCAL LOGIN
+========================================= */
+
+.login-page {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 40px 20px;
+
+  background-image: url('./assets/background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  font-family: "Comic Sans MS", "Marker Felt", cursive;
+  color: #143f2b;
+}
+
+.login-card {
+  width: min(520px, calc(100vw - 40px));
+  box-sizing: border-box;
+  padding: 40px 44px 34px;
+
+  background: rgba(255, 253, 247, 0.96);
+  border: 2px solid rgba(57, 113, 77, 0.2);
+  border-radius: 28px;
+
+  box-shadow:
+    0 16px 36px rgba(0, 0, 0, 0.2);
+
+  text-align: center;
+}
+
+.login-logo {
+  width: 210px;
+  max-width: 70%;
+  height: auto;
+  margin-bottom: 12px;
+}
+
+.login-kicker {
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #5f854d;
+}
+
+.login-card h1 {
+  margin: 6px 0 12px;
+  font-size: 31px;
+  color: #174c35;
+}
+
+.login-copy {
+  max-width: 410px;
+  margin: 0 auto 24px;
+  font-size: 16px;
+  line-height: 1.55;
+  color: #344b43;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+.login-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.login-field span {
+  font-size: 14px;
+  font-weight: bold;
+  color: #174c35;
+}
+
+.login-field input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 14px;
+  border: 2px solid rgba(67, 129, 91, 0.35);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.86);
+  outline: none;
+
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  color: #243a32;
+}
+
+.login-field input:focus {
+  border-color: #43815b;
+  box-shadow: 0 0 0 3px rgba(67, 129, 91, 0.12);
+}
+
+.login-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.login-primary-button,
+.login-secondary-button {
+  min-height: 50px;
+  padding: 10px 16px;
+  border-radius: 13px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.login-primary-button {
+  border: 2px solid #2e7149;
+  background: #43815b;
+  color: white;
+}
+
+.login-primary-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background: #36734f;
+  box-shadow: 0 6px 14px rgba(20, 63, 43, 0.16);
+}
+
+.login-secondary-button {
+  border: 2px solid #43815b;
+  background: white;
+  color: #286d49;
+}
+
+.login-secondary-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background: #f2fff2;
+  box-shadow: 0 6px 14px rgba(20, 63, 43, 0.12);
+}
+
+.login-primary-button:disabled,
+.login-secondary-button:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+.login-error {
+  margin-top: 18px;
+  padding: 14px 15px;
+  border: 1px solid rgba(157, 63, 63, 0.28);
+  border-radius: 12px;
+  background: rgba(255, 226, 226, 0.82);
+
+  font-size: 13px;
+  line-height: 1.5;
+  color: #8a3434;
+  text-align: left;
+}
+
+.login-footnote {
+  margin: 18px 0 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #6f7e77;
+}
+
+@media (max-width: 560px) {
+  .login-card {
+    padding: 32px 24px 28px;
+  }
+
+  .login-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* =========================================
+   SIGNED-IN USER IN HEADER
+========================================= */
+
+.header-account {
+  margin-left: auto;
+  margin-top: 5px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 8px 10px 8px 14px;
+
+  background: rgba(255, 253, 247, 0.9);
+  border: 1px solid rgba(46, 113, 73, 0.2);
+  border-radius: 18px;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.header-account-copy {
+  min-width: 0;
+  max-width: 190px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.header-account-copy strong {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  font-size: 13px;
+  color: #174c35;
+}
+
+.header-account-copy span {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  color: #68766f;
+}
+
+.sign-out-button {
+  padding: 7px 10px;
+
+  border: 1px solid #43815b;
+  border-radius: 10px;
+  background: transparent;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: bold;
+  color: #286d49;
+
+  cursor: pointer;
+}
+
+.sign-out-button:hover:not(:disabled) {
+  background: #43815b;
+  color: white;
+}
+
+.sign-out-button:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+@media (max-width: 900px) {
+  .header-account-copy {
+    display: none;
+  }
+
+  .header-account {
+    padding-left: 9px;
+  }
+}
+
+
+/* =========================================
+   POPULATED INTERN GARDEN DIRECTORY
+========================================= */
+
+.intern-garden-directory {
+  width: 100%;
+  max-width: 1180px;
+  box-sizing: border-box;
+  margin: 0 auto 24px;
+  padding: 26px 28px 30px;
+
+  background: rgba(255, 253, 247, 0.95);
+  border-radius: 24px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.16);
+}
+
+.intern-count {
+  padding: 7px 12px;
+  border: 1px solid #bfd0a9;
+  border-radius: 999px;
+  background: #edf4dd;
+
+  font-size: 12px;
+  font-weight: bold;
+  color: #31573f;
+}
+
+.intern-pot-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 18px;
+  align-items: end;
+}
+
+.intern-pot-card {
+  position: relative;
+  min-width: 0;
+  min-height: 220px;
+  padding: 10px 8px 8px;
+
+  border: 2px solid transparent;
+  border-radius: 18px;
+  background: rgba(240, 247, 227, 0.46);
+
+  font-family: inherit;
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease,
+    background-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.intern-pot-card:hover {
+  transform: translateY(-4px);
+  border-color: #8eb17b;
+  background: rgba(235, 246, 220, 0.82);
+  box-shadow: 0 8px 14px rgba(40, 80, 54, 0.1);
+}
+
+.intern-pot-card.selected {
+  border-color: #34734c;
+  background: rgba(226, 241, 206, 0.88);
+  box-shadow: 0 0 0 3px rgba(52, 115, 76, 0.1);
+}
+
+.intern-pot-card.current-user {
+  background: rgba(244, 249, 223, 0.9);
+}
+
+.your-planter-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;
+
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #43815b;
+  color: white;
+
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.mini-planter-scene {
+  position: relative;
+  width: 100%;
+  height: 195px;
+}
+
+.mini-garden-flower {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  z-index: 5;
+
+  transform: translateX(-50%);
+  font-size: 62px;
+  line-height: 1;
+}
+
+.mini-garden-stem {
+  position: absolute;
+  top: 57px;
+  left: calc(50% - 3px);
+
+  width: 6px;
+  height: 78px;
+  border-radius: 5px;
+  background: #4c8a4a;
+}
+
+.mini-garden-leaf {
+  position: absolute;
+  top: 92px;
+
+  width: 32px;
+  height: 17px;
+  border-radius: 100% 0 100% 0;
+  background: #6da25b;
+}
+
+.mini-garden-leaf.left {
+  left: calc(50% - 34px);
+  transform: rotate(25deg);
+}
+
+.mini-garden-leaf.right {
+  right: calc(50% - 34px);
+  transform: scaleX(-1) rotate(25deg);
+}
+
+.mini-garden-pot {
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+
+  width: min(128px, 88%);
+  height: 75px;
+
+  transform: translateX(-50%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #bd8150;
+  border: 3px solid #80532f;
+  border-radius: 9px 9px 29px 29px;
+
+  box-shadow: inset 0 -9px 0 rgba(116, 67, 34, 0.12);
+}
+
+.mini-garden-pot::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: -8px;
+
+  width: calc(100% + 10px);
+  height: 18px;
+
+  background: #cc8c58;
+  border: 3px solid #80532f;
+  border-radius: 7px;
+}
+
+.mini-garden-pot span {
+  position: relative;
+  z-index: 5;
+
+  width: calc(100% - 24px);
+  padding: 5px 7px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  background: #f6f0d7;
+  border: 1px solid #99754d;
+  border-radius: 4px;
+
+  color: #4b3d2b;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.intern-directory-profile {
+  width: 100%;
+  max-width: 1180px;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.favorite-media-group + .favorite-media-group {
+  margin-top: 24px;
+}
+
