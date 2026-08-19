@@ -3438,11 +3438,6 @@ function LoginPage({
             {error}
           </div>
         )}
-
-        <p className="login-footnote">
-          Accounts, profiles, journals, and STAR statements are
-          stored through the Express backend in MySQL.
-        </p>
       </section>
     </main>
   )
@@ -5039,7 +5034,7 @@ function usePlantFood() {
         <div className="header-account">
           <div className="header-account-copy">
             <strong>{currentUser}</strong>
-            <span>backend account</span>
+            
           </div>
 
           <button
