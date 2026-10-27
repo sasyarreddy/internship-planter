@@ -25,3 +25,5 @@ dist-ssr
 server/.env
 .env
 .env.local
+# Cloudflare Wrangler local state
+.wrangler
