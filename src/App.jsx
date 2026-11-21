@@ -1,15 +1,6 @@
-
-
-import { supabase } from './supabase'
-
-supabase.auth.getSession().then(({ error }) =>
-  console.log(error ? 'Supabase error: ' + error.message : 'Supabase connected')
-)
-
-
-
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
+import { supabase } from './supabase'
 
 import logo from './assets/logo.png'
 
@@ -32,9 +23,6 @@ import apple from './assets/apple.png'
 
 import wateringCan from './assets/watering-can.png'
 import plantFood from './assets/plant-food.png'
-import journalIcon from './assets/journal-icon.png'
-
-
 
 
 
@@ -72,6 +60,68 @@ const USER_DATA_KEYS = [
 
 function normalizeUsername(username) {
   return username.trim().toLowerCase()
+}
+
+/* =========================================
+   SUPABASE DATA HELPERS
+========================================= */
+
+// Supabase Auth signs people in with an email address, so each
+// username is turned into a placeholder email behind the scenes.
+// Users only ever see and type their username.
+const USERNAME_EMAIL_DOMAIN = 'example.com'
+
+function usernameToEmail(username) {
+  return `${normalizeUsername(username)}@${USERNAME_EMAIL_DOMAIN}`
+}
+
+async function getSignedInUserId() {
+  const { data } = await supabase.auth.getSession()
+  return data.session?.user?.id || null
+}
+
+// Reads one column from the signed-in user's row in a table.
+// Returns null when the user has no row yet.
+async function loadUserRow(table, column) {
+  const userId = await getSignedInUserId()
+
+  if (!userId) {
+    throw new Error('Not signed in to Supabase.')
+  }
+
+  const { data, error } = await supabase
+    .from(table)
+    .select(column)
+    .eq('user_id', userId)
+    .maybeSingle()
+
+  if (error) {
+    throw error
+  }
+
+  return data ? data[column] : null
+}
+
+// Creates or updates the signed-in user's row in a table.
+async function saveUserRow(table, column, value, extraColumns = {}) {
+  const userId = await getSignedInUserId()
+
+  if (!userId) {
+    throw new Error('Not signed in to Supabase.')
+  }
+
+  const { error } = await supabase
+    .from(table)
+    .upsert({
+      user_id: userId,
+      [column]: value,
+      ...extraColumns,
+      updated_at: new Date().toISOString(),
+    })
+
+  if (error) {
+    throw error
+  }
 }
 
 function getActiveUsername() {
@@ -2054,15 +2104,15 @@ function InternHubPage({
 
     async function loadInterns() {
       try {
-        const response = await fetch('/api/profiles')
+        const { data: profileRows, error } =
+          await supabase
+            .from('profiles')
+            .select('username, profile')
+            .order('username')
 
-        if (!response.ok) {
-          throw new Error(
-            `Could not load profiles (${response.status}).`
-          )
+        if (error) {
+          throw error
         }
-
-        const profileRows = await response.json()
 
         if (!cancelled) {
           setInterns(
@@ -2205,24 +2255,12 @@ function InternHubPage({
     )
 
     try {
-      const response = await fetch(
-        `/api/profile/${encodeURIComponent(currentUsername)}`,
-        {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(nextProfile),
-        }
+      await saveUserRow(
+        'profiles',
+        'profile',
+        nextProfile,
+        { username: currentUsername }
       )
-
-      const data = await response.json()
-
-      if (!response.ok) {
-        throw new Error(
-          data.message || 'Could not save profile.'
-        )
-      }
 
       setProfile(nextProfile)
       setEditing(false)
@@ -3490,38 +3528,28 @@ function App() {
     setAuthError('')
 
     try {
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username: normalizedUsername,
+      const { data, error } =
+        await supabase.auth.signInWithPassword({
+          email: usernameToEmail(normalizedUsername),
           password,
-        }),
-      })
+        })
 
-      const data = await response.json()
-
-      if (!response.ok) {
+      if (error) {
         setAuthError(
-          data.message || 'Login failed.'
+          error.message === 'Invalid login credentials'
+            ? 'Incorrect username or password.'
+            : error.message
         )
         return
       }
 
       const authenticatedUsername =
-        data.user?.username
+        data.user?.user_metadata?.username ||
+        normalizedUsername
 
-      if (!authenticatedUsername) {
-        throw new Error(
-          'Login response did not include a user.'
-        )
-      }
-
-      // Preserve any pre-login prototype data once, then keep using
-      // the username namespace until the rest of planter data moves
-      // from localStorage into MySQL.
+      // Preserve any pre-login prototype data once. Weekly progress,
+      // tasks and to-dos stay in this browser's localStorage; journals,
+      // STAR stories and profiles are saved in Supabase.
       migrateLegacyDataOnce(
         authenticatedUsername
       )
@@ -3538,7 +3566,7 @@ function App() {
       window.location.reload()
     } catch (error) {
       console.error(
-        'Backend login failed:',
+        'Supabase login failed:',
         error
       )
 
@@ -3561,6 +3589,13 @@ function App() {
       return
     }
 
+    if (!/^[a-z0-9._-]+$/.test(normalizedUsername)) {
+      setAuthError(
+        'Usernames can only use letters, numbers, dots, dashes and underscores.'
+      )
+      return
+    }
+
     if (password.length < 6) {
       setAuthError(
         'Choose a password with at least 6 characters.'
@@ -3572,37 +3607,42 @@ function App() {
     setAuthError('')
 
     try {
-      const response = await fetch('/api/users', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username: normalizedUsername,
+      const { data, error } =
+        await supabase.auth.signUp({
+          email: usernameToEmail(normalizedUsername),
           password,
-        }),
-      })
+          options: {
+            data: {
+              username: normalizedUsername,
+            },
+          },
+        })
 
-      const data = await response.json()
-
-      if (!response.ok) {
+      if (error) {
         setAuthError(
-          data.message ||
-            'The account could not be created.'
+          /already registered/i.test(error.message)
+            ? 'That username is already taken.'
+            : error.message
         )
         return
       }
 
-      const createdUsername =
-        data.username || normalizedUsername
+      if (!data.session) {
+        // Supabase only skips the session when "Confirm email" is on,
+        // and these placeholder emails can't receive a confirmation.
+        setAuthError(
+          'Account created, but it needs email confirmation. Turn off "Confirm email" in Supabase (Authentication → Sign In / Providers → Email), then sign up with a new username.'
+        )
+        return
+      }
+
+      const createdUsername = normalizedUsername
 
       // Preserve data from the pre-login prototype once.
       migrateLegacyDataOnce(createdUsername)
 
-      // Do not make profile creation part of account creation.
-      // Once the user is logged in, the normal profile-loading effect
-      // will create a default backend profile if this user does not
-      // have one yet.
+      // Once the user is logged in, the profile-loading effect
+      // creates a default Supabase profile for them.
       window.localStorage.setItem(
         AUTH_SESSION_KEY,
         createdUsername
@@ -3612,7 +3652,7 @@ function App() {
       window.location.reload()
     } catch (error) {
       console.error(
-        'Backend account creation failed:',
+        'Supabase account creation failed:',
         error
       )
 
@@ -3627,7 +3667,9 @@ function App() {
     }
   }
 
-  function handleLocalLogout() {
+  async function handleLocalLogout() {
+    await supabase.auth.signOut()
+
     window.localStorage.removeItem(
       AUTH_SESSION_KEY
     )
@@ -3635,6 +3677,24 @@ function App() {
     setCurrentUser('')
     window.location.reload()
   }
+
+  // If this browser remembers a username but has no Supabase
+  // session (for example, a login from the old MySQL version),
+  // send the user back to the login page.
+  useEffect(() => {
+    if (!currentUser) {
+      return
+    }
+
+    supabase.auth.getSession().then(({ data }) => {
+      if (!data.session) {
+        window.localStorage.removeItem(
+          AUTH_SESSION_KEY
+        )
+        setCurrentUser('')
+      }
+    })
+  }, [currentUser])
 
 
   /* =========================================
@@ -3757,19 +3817,9 @@ function App() {
       setJournalsLoaded(false)
 
       try {
-        const response = await fetch(
-          `/api/journals/${encodeURIComponent(currentUser)}`
-        )
-
-        if (!response.ok) {
-          throw new Error(
-            `Could not load journals (${response.status}).`
-          )
-        }
-
         const backendJournals =
           parseBackendJson(
-            await response.json(),
+            await loadUserRow('journals', 'entries'),
             []
           )
 
@@ -3805,22 +3855,11 @@ function App() {
         }
 
         if (journalsToUse.length > 0) {
-          const migrateResponse = await fetch(
-            `/api/journals/${encodeURIComponent(currentUser)}`,
-            {
-              method: 'PUT',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(journalsToUse),
-            }
+          await saveUserRow(
+            'journals',
+            'entries',
+            journalsToUse
           )
-
-          if (!migrateResponse.ok) {
-            throw new Error(
-              `Could not migrate journals (${migrateResponse.status}).`
-            )
-          }
         }
 
         if (!cancelled) {
@@ -3829,13 +3868,14 @@ function App() {
         }
       } catch (error) {
         console.error(
-          'Could not load backend journals:',
+          'Could not load journals from Supabase:',
           error
         )
 
+        // Leave journalsLoaded false so the auto-save below doesn't
+        // overwrite the saved journals with an empty list.
         if (!cancelled) {
           setJournalEntries([])
-          setJournalsLoaded(true)
         }
       }
     }
@@ -3877,19 +3917,9 @@ function App() {
       setStarsLoaded(false)
 
       try {
-        const response = await fetch(
-          `/api/stars/${encodeURIComponent(currentUser)}`
-        )
-
-        if (!response.ok) {
-          throw new Error(
-            `Could not load STAR statements (${response.status}).`
-          )
-        }
-
         const backendStars =
           parseBackendJson(
-            await response.json(),
+            await loadUserRow('stars', 'stories'),
             []
           )
 
@@ -3926,22 +3956,11 @@ function App() {
           }
         }
 
-        const migrateResponse = await fetch(
-          `/api/stars/${encodeURIComponent(currentUser)}`,
-          {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(starsToUse),
-          }
+        await saveUserRow(
+          'stars',
+          'stories',
+          starsToUse
         )
-
-        if (!migrateResponse.ok) {
-          throw new Error(
-            `Could not initialize STAR statements (${migrateResponse.status}).`
-          )
-        }
 
         if (!cancelled) {
           setFruitStories(starsToUse)
@@ -3949,15 +3968,16 @@ function App() {
         }
       } catch (error) {
         console.error(
-          'Could not load backend STAR statements:',
+          'Could not load STAR statements from Supabase:',
           error
         )
 
+        // Leave starsLoaded false so the auto-save below doesn't
+        // overwrite saved STAR stories with the starter ones.
         if (!cancelled) {
           setFruitStories(
             DEFAULT_FRUIT_STORIES
           )
-          setStarsLoaded(true)
         }
       }
     }
@@ -3994,19 +4014,9 @@ function App() {
 
     async function loadProfile() {
       try {
-        const response = await fetch(
-          `/api/profile/${encodeURIComponent(currentUser)}`
-        )
-
-        if (!response.ok) {
-          throw new Error(
-            `Could not load profile (${response.status}).`
-          )
-        }
-
         const backendProfile =
           parseBackendJson(
-            await response.json(),
+            await loadUserRow('profiles', 'profile'),
             null
           )
 
@@ -4043,29 +4053,19 @@ function App() {
           }
         }
 
-        const saveResponse = await fetch(
-          `/api/profile/${encodeURIComponent(currentUser)}`,
-          {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(profileToSave),
-          }
+        await saveUserRow(
+          'profiles',
+          'profile',
+          profileToSave,
+          { username: currentUser }
         )
-
-        if (!saveResponse.ok) {
-          throw new Error(
-            `Could not initialize profile (${saveResponse.status}).`
-          )
-        }
 
         if (!cancelled) {
           setInternProfile(profileToSave)
         }
       } catch (error) {
         console.error(
-          'Could not load backend profile:',
+          'Could not load profile from Supabase:',
           error
         )
 
@@ -4256,31 +4256,15 @@ function App() {
 
     async function saveJournalsToBackend() {
       try {
-        const response = await fetch(
-          `/api/journals/${encodeURIComponent(currentUser)}`,
-          {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(journalEntries),
-          }
+        await saveUserRow(
+          'journals',
+          'entries',
+          journalEntries
         )
-
-        if (!response.ok) {
-          const data = await response
-            .json()
-            .catch(() => ({}))
-
-          throw new Error(
-            data.message ||
-              `Could not save journals (${response.status}).`
-          )
-        }
       } catch (error) {
         if (!cancelled) {
           console.error(
-            'Could not save journals to backend:',
+            'Could not save journals to Supabase:',
             error
           )
         }
@@ -4311,31 +4295,15 @@ function App() {
 
     async function saveStarsToBackend() {
       try {
-        const response = await fetch(
-          `/api/stars/${encodeURIComponent(currentUser)}`,
-          {
-            method: 'PUT',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(fruitStories),
-          }
+        await saveUserRow(
+          'stars',
+          'stories',
+          fruitStories
         )
-
-        if (!response.ok) {
-          const data = await response
-            .json()
-            .catch(() => ({}))
-
-          throw new Error(
-            data.message ||
-              `Could not save STAR statements (${response.status}).`
-          )
-        }
       } catch (error) {
         if (!cancelled) {
           console.error(
-            'Could not save STAR statements to backend:',
+            'Could not save STAR statements to Supabase:',
             error
           )
         }
