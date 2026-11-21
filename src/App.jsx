@@ -102,7 +102,8 @@ async function loadUserRow(table, column) {
   return data ? data[column] : null
 }
 
-// Creates or updates the signed-in user's row in a table.
+// Saves the signed-in user's row in a table: updates it if it
+// exists, otherwise creates it.
 async function saveUserRow(table, column, value, extraColumns = {}) {
   const userId = await getSignedInUserId()
 
@@ -110,17 +111,38 @@ async function saveUserRow(table, column, value, extraColumns = {}) {
     throw new Error('Not signed in to Supabase.')
   }
 
-  const { error } = await supabase
+  const changes = {
+    [column]: value,
+    ...extraColumns,
+    updated_at: new Date().toISOString(),
+  }
+
+  // Try updating the user's existing row first.
+  const { data: updatedRows, error: updateError } =
+    await supabase
+      .from(table)
+      .update(changes)
+      .eq('user_id', userId)
+      .select('user_id')
+
+  if (updateError) {
+    throw updateError
+  }
+
+  if (updatedRows && updatedRows.length > 0) {
+    return
+  }
+
+  // No row yet, so create one.
+  const { error: insertError } = await supabase
     .from(table)
-    .upsert({
+    .insert({
       user_id: userId,
-      [column]: value,
-      ...extraColumns,
-      updated_at: new Date().toISOString(),
+      ...changes,
     })
 
-  if (error) {
-    throw error
+  if (insertError) {
+    throw insertError
   }
 }
 
@@ -2271,7 +2293,7 @@ function InternHubPage({
       )
 
       window.alert(
-        'Your profile could not be saved to the server.'
+        'Profile save failed: ' + (error.message || JSON.stringify(error))
       )
     }
   }
