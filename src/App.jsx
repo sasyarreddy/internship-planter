@@ -1,3 +1,13 @@
+
+
+import { supabase } from './supabase'
+
+supabase.auth.getSession().then(({ error }) =>
+  console.log(error ? 'Supabase error: ' + error.message : 'Supabase connected')
+)
+
+
+
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
 
@@ -23,6 +33,10 @@ import apple from './assets/apple.png'
 import wateringCan from './assets/watering-can.png'
 import plantFood from './assets/plant-food.png'
 import journalIcon from './assets/journal-icon.png'
+
+
+
+
 
 
 /* =========================================
